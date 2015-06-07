@@ -7,12 +7,15 @@ require($_common['localPath'] . '/content/header.php');
 require($_common['localPath'] . '/include/class_com_bookapi.php');
 require($_common['localPath'] . '/data/class_book_post.php');
 
+$search = "";
+if(isset($_GET['s']))
+	$search = $_GET['s'];
 ?>
     <div id="section">
         <ul class="book_list">
             <?php
             $book = new isa_book_post();
-            $lstBook = $book->GetBooks();
+            $lstBook = $book->GetBooks($search);
             for($i = 0; $i < $lstBook->num_rows; $i++)
             {
                 $row = $lstBook->fetch_assoc();
@@ -20,13 +23,12 @@ require($_common['localPath'] . '/data/class_book_post.php');
                 $isLend = 1 == $row['isLend'] ? "借人了" : "还在家";
                 $html = <<<HTML
 			<li class="book_item">
-				<a href="http://book.douban.com/subject/{$row["book_dbid"]}/" class="book_img"><img src="{$row['book_img']}" alt="{$row['book_name']}"/></a>
+				<a href="http://book.douban.com/subject/{$row["book_dbid"]}/" class="book_img" rel="nofollow" target="_blank"><img src="{$row['book_img']}" alt="{$row['book_name']}"/></a>
 				<div class="book_desc">
 					<h2 class="t_over title"><a href="http://book.douban.com/subject/{$row["book_dbid"]}/" title="{$row['book_name']}" target="_blank">{$row['book_name']}</a></h2>
 					<p>作者:  {$row['book_author']}</p>
 					<p>出版社: {$row['book_publisher']}</p>
 					<p>页数: {$row['book_pages']}</p>
-					<p>出版日期: {$row['book_pubdate']}</p>
 					<p>ISBN: {$row['book_ISBN']}</p>
 				</div>
                 <div class="book_status">

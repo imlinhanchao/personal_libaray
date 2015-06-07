@@ -72,8 +72,8 @@ if(isset($_POST['bookname']))
         $_POST["bookimg"],
         $_POST["bookname"],
         $_POST["bookauthor"],
-        $_POST["bookpublisher"],
         $_POST["bookpages"],
+        $_POST["bookpublisher"],
         $_POST["bookisbn"],
         $_POST["bookpubdate"]
     );

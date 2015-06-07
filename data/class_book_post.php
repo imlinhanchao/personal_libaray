@@ -41,11 +41,11 @@ class isa_book_post
 		return $result;
 	}
 	
-	function GetBooks()
+	function GetBooks($search)
 	{
 		$db = new cSql();
 		$db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$sql = $this->getList();
+		$sql = $this->getList($search);
 		$result = $db->query($sql);
 		return $result;
 	}
@@ -125,9 +125,9 @@ class isa_book_post
 		return $value;
 	}
 	
-	protected function getList()
+	protected function getList($search)
 	{
-		$sql = "select *, !ISNULL((select `lend_id` from `cc_web_lend` as ld where ld.`book_id` = bk.`book_id` and `lend_valid` = 1)) isLend from `cc_web_book` as bk";
+		$sql = "select *, !ISNULL((select `lend_id` from `cc_web_lend` as ld where ld.`book_id` = bk.`book_id` and `lend_valid` = 1)) isLend from `cc_web_book` as bk where `book_name` like '%".$search."%' or `book_author` like '%".$search."%' or `book_publisher` like '%".$search."%' or `book_ISBN` = '".$search."' order by `book_id` desc";
 		return $sql;
 	}
 
