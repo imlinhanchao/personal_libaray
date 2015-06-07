@@ -1,0 +1,26 @@
+﻿@charset "utf-8";
+/**Public Begin**/
+tbody, tfoot, thead, tr, th, td{margin:0;padding:0;outline:0;font-size:100%;}
+a img{border:none;}
+body{color:#000;background-color:#fff;font: 1em MuseoSans100,"Lucida Grande", Tahoma, Verdana, Arial, "微软雅黑","华文细黑", "黑体", "宋体";_font-family:微软雅黑;*font-family:微软雅黑;}
+input,textarea {font-size:100%; font-family:"Lucida Grande", Tahoma, Verdana, Arial, "微软雅黑","华文细黑", "黑体", "宋体";_font-family:微软雅黑;*font-family:微软雅黑;}
+div{display:block;}
+code {font-family: "Courier New",Courier,monospace;font-weight: 700;font-size: 15px;padding: 1px 4px;background-color: #F2F2F2;text-shadow: 1px 1px white;}
+code:hover{background-color: #E1E1E1;}
+iframe{border:none;}
+a{text-decoration:none;color:#000;}
+a:hover{text-decoration:underline;}
+table{border-collapse:collapse;border-spacing: 0;}
+q:before, q:after, blockquote:before, blockquote:after {content: "";}
+ul{list-style:none;}
+.clr{clear:both;}
+.clr:before,.clr:after {content:"";display:table;}
+.clr:after{clear:both;}
+.clearfix{zoom:1;}
+cite{font-style:normal;}
+a, area{blr:expression(this.onFocus=this.blur());}
+:focus{-moz-outline-style:none;hidefocus:hidefocus;outline:none;}
+.hide{display:none;}
+.t_over{-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+.sprite{background:url(../images/sprite.png) no-repeat;}
+/**Public End **/

@@ -1,0 +1,94 @@
+﻿@charset "utf-8";
+/** Header **/
+body{margin:0 auto;background-color: #fafbfc;}
+body.dialog{width:auto;}
+#header{width:100%;background-color: #232425;*height:115px;}
+#logo{display:inline-block;*float:left;color: #fafbfc;height: 100px;background: url(../images/logo.png) no-repeat center;width: 270px;}
+#logo h1{
+    display: none;
+}
+#donate{float:right;background-color:#DEDFE1;height:40px;width:120px;margin-top:60px;}
+a#donate:hover{text-decoration:none;}
+#donate p{margin: 0 0 0 40px;text-align:center;line-height:40px;}
+
+/** Section **/
+#section{width:100%;}
+.book_list{margin: 0;padding:0;}
+.book_item{float:left;background: #FFF; display: inline-block;border: 1px solid #CCC;margin-left: -1px;border-top: none;}
+.book_item a.book_img{overflow:hidden;height: 400px;display: block;box-shadow: 2px 2px 2px #DDD;}
+.book_item img{min-width: 250px;min-height:220px;width: 100%;}
+.book_item .book_desc{margin:0;padding:5px 20px;}
+.book_item .title{font-size: 150%;width: 260px;margin:10px 0;}
+.book_item .ebook, .book_item .pending{background: #fff url(../images/sprite_s.png) no-repeat;height: 30px;width: 70px;padding: 0 0 0 30px;text-align:center;line-height: 30px;float:left;margin: 5px 15px 0 0;}
+.book_item .ebook:hover, .book_item .pending:hover{text-decoration:none;}
+.book_item .pending{background-position:0 -120px;color: #CCC;}
+.book_item .ebook{background-position:0 -240px;}
+.book_item .sp_btn, .form_btn{border:0;display: inline-block;line-height: 25px;text-align: center;background-color: #232425;color: #FFF;padding: 5px 15px;}
+.book_item .book_status{padding: 0 20px 10px;}
+.book_item .book_isLend{background-color:#707070;}
+.book_item .book_isRead{background-color:#dc3023;}
+
+/** Footer **/
+#footer{clear: both;text-align:center;color:#aaa;font-size:90%;padding:15px 0;}
+#footer a{color:#aaa;}
+
+/** sprite **/
+.newbook, .search, .logout, .user, .pending, .setting, .password, .booklist, .ebook{background:#232425 url(../images/sprite.png) no-repeat center;}
+.newbook{background-position:0 0;}
+.search{background-position:0 -40px;}
+.logout{background-position:0 -80px;}
+.user{background-position:0 -120px;}
+.pending{background-position:0 -160px;}
+.setting{background-position:0 -200px;}
+.password{background-position:0 -240px;}
+.booklist{background-position:0 -280px;}
+.ebook{background-position:0 -320px;}
+
+/** Login **/
+#admin{width:390px;height:288px;position:absolute;top:50%;left:50%;margin:-195px 0 0 -188px;}
+#login #logo{display:block;width:386px;height:77px;background:url(../images/login.png) no-repeat left top;margin:0 auto;}
+#login h1{display:none;}
+.login_form .user, .login_form .password{width:40px;height:40px;float:left;}
+.login_form p{width:386px;margin:30px auto;line-height:40px;height:40px;}
+p.submit label{font-size:0.8em;}
+
+/** Nav **/
+#nav{float:right;margin-top: 30px;}
+#nav .nav_list{margin:0;padding:0;}
+#nav .nav_item{width:40px;height:40px;overflow:hidden;float:left;margin:5px;}
+.nav_item a{padding-left:40px;display:block;line-height:40px;}
+
+/** Form **/
+label.text{display:block;float:left;width:120px;height:40px;background-color: #232425;color:#fff;line-height:40px;text-align:center;}
+input.text{border:none;width:330px;height:40px;line-height:20px;background-color:#DEDFE1;margin:0; padding: 0 0 0 10px;float:left;}
+span.text_tail{float:left;height:40px;line-height:40px;background-color:#DEDFE1;padding:0 5px;}
+.iconbtn{width:40px;height:40px;float:left;border:none;}
+.iconbtn:hover{cursor:pointer;}
+.iconbtn:active{cursor:pointer;width:38px;height:38px;margin:1px;}
+.btn{width: 80px;background:#000;border:none;color:#fff;height: 35px;float: right;margin: 0 10px;}
+.btn:hover{cursor:pointer;}
+.btn:active{width:78px;height:33px;margin:1px 11px;}
+
+/** Post **/
+#post{}
+#post ul{margin:10px 0;padding:0;}
+#post li.form_item{clear:left;height:40px;margin:10px 0;}
+span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:center;background-color:#DEDFE1;}
+
+/** Edit **/
+.post_content{width:700px;margin:0 auto;}
+.thumb{float:left;}
+.thumb .pic{width: 250px;}
+.info{margin-left: 300px;width: 400px;}
+.info label.text{margin-left:5px;width:60px;}
+.info input.text#count{width:60px;}
+.info input.text#people{width:100px;}
+.info .title{font-size:200%;font-weight:normal;width:450px;}
+.info .submit{text-align:right;}
+
+/** Lend **/
+.txt_noBorder{border:0;padding: 5px; line-height: 25px;margin-left: -5px;}
+.txt_title{display: inline-block;color:#FFF; background:#232425; padding: 5px 15px; line-height: 25px;}
+.form_btn{cursor: pointer;}
+.form_submit{text-align: center;}
+#lend_cancel{background: #CCC;}

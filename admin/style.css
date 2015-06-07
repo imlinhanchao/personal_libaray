@@ -1,0 +1,41 @@
+/** Login **/
+#admin{width:390px;height:288px;margin: 50px auto;}
+#login #logo{display:block;width: 400px;height: 100px;background:url(../images/login.png) no-repeat left top;margin:0 auto;}
+#logo h1{display:none;}
+.login_form .user, .login_form .password{width:40px;height:40px;float:left;}
+.login_form p{width:386px;margin:30px auto;line-height:40px;height:40px;}
+p.submit label{font-size:0.8em;}
+
+/** header **/
+#header{margin:0 0 15px;}
+#header #logo{display:block;width: 400px;height: 100px;background:url(../images/mail_logo.png) no-repeat left top;}
+#logo a{display:block;height: 100px;}
+#header #logout{height: 50px;background: url(../images/logout.png) no-repeat left;float: right;margin-top: 50px;line-height: 50px;padding-left: 30px;}
+#header #stats{height: 50px;background: url(../images/stats.png) no-repeat left;float: right;margin: 50px 5px 0;line-height: 50px;padding-left: 35px;}
+
+/** list **/
+#join_list{margin:10px auto;width:100%;border-collapse:collapse;}
+#join_list td, #join_list th{font-size:1em;border:1px solid #ddd;padding:3px 7px 2px 7px;white-space:nowrap;}
+#join_list th{font-size:1.1em;text-align:center;padding-top:5px;padding-bottom:4px;background-color:#000;color:#ffffff;}
+#join_list tr.alt td{color:#000000;background-color:#EEE;}
+
+/** sprite **/
+.newbook, .search, .logout, .user, .pending, .setting, .password, .booklist, .ebook{background:url(../images/sprite.png) no-repeat;}
+.newbook{background-position:0 0;}
+.search{background-position:0 -40px;}
+.logout{background-position:0 -80px;}
+.user{background-position:0 -120px;}
+.pending{background-position:0 -160px;}
+.setting{background-position:0 -200px;}
+.password{background-position:0 -240px;}
+.booklist{background-position:0 -280px;}
+.ebook{background-position:0 -320px;}
+
+/** Form **/
+label.text{display:block;float:left;width:120px;height:40px;background-color:#000;color:#fff;line-height:40px;text-align:center;}
+input.text{border:none;width:330px;height:40px;line-height:20px;background-color:#DEDFE1;margin:0; padding: 0 0 0 10px;float:left;}
+span.text_tail{float:left;height:40px;line-height:40px;background-color:#DEDFE1;padding:0 5px;}
+.iconbtn{width:40px;height:40px;float:left;border:none;}
+.btn{width: 80px;background:#000;border:none;color:#fff;height: 35px;float: right;margin: 0 10px;}
+.btn:hover{cursor:pointer;}
+.btn:active{width:78px;height:33px;margin:1px 11px;}

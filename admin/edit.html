@@ -1,0 +1,39 @@
+<?php 
+require_once("./verify.php");
+
+//page define 
+$common['title'] = "管理后台 &laquo; 创软图书馆";
+$common['page'] = "admin";
+$common['localpath'] = '..';
+
+require($common['localpath'] . '/content/headlite.php');
+
+// get book info
+require($common['localpath'] . '/include/class_bookapi.php');
+
+?>
+ <body class="dialog">
+	<div id="post">
+		<div class="post_content">
+			<div class="thumb"><img src="http://img3.douban.com/lpic/s1669754.jpg" alt="" class="pic"/></div>
+			<div class="info">
+				<h2 class="t_over title">深入浅出HTML、CSS和XHTML</h2>
+				<p>
+					<label for="count" class="text">数量</label>
+					<input type="text" name="count" id="count" class="text"/><span class="text_tail">本</span>
+					<label for="people" class="text">捐赠者</label>
+					<input type="text" name="people" id="people" class="text"/>
+					<label for="entity" class="text">实体书</label>
+					<span class="checkbox"><span class="checked"></span><input type="checkbox" name="entity" id="entity"/></span>
+					<input type="hidden" name="dbid" value="1799652"/>
+				</p>
+				<p>
+					<label for="ebookurl" class="text">电子书</label>
+					<input type="text" name="ebookurl" id="ebookurl" class="text"/>
+				</p>
+				<p class="submit"><input type="submit" value="添加" class="btn"/></p>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
