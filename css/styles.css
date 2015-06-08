@@ -92,3 +92,14 @@ span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:cent
 .form_btn{cursor: pointer;}
 .form_submit{text-align: center;}
 #lend_cancel{background: #CCC;}
+
+/** List **/
+#bool_list{border-collapse:collapse;margin-top:1px;}
+#bool_list th{color:#FFF;background:#232425;}
+#bool_list td, #bool_list th{border-bottom:1px solid #CCCBCA;padding:7px;text-align:center;}
+#bool_list tr.alt td {color:#000000;background-color:#EAF2D3;}
+#bool_list .control_link{margin:5px;}
+.th_number{width:50px;}
+.th_bookname{width:350px;}
+.th_status{width:150px;}
+.th_manager{width:250px;}

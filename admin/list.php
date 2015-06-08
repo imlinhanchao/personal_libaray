@@ -13,27 +13,32 @@ $_common['head'] = $_common['head'] . "<style type=\"text/css\">.fancybox-inner{
 require($_common['localPath'] . '/content/header.php');
 require($_common['localPath'] . '/data/class_book_post.php');
 
+$search = "";
+if(isset($_GET['s']))
+	$search = $_GET['s'];
+
 ?>
 <form action="#" methon="post">
 	<div id="admin_list">
-		<table id="join_list">
+		<table id="bool_list">
 			<tr>
-				<th>序号</th>
-				<th>书名</th>
-				<th>状态</th>
-				<th>管理</th>
+				<th class="th_number">序号</th>
+				<th class="th_bookname">书名</th>
+				<th class="th_status">状态</th>
+				<th class="th_manager">管理</th>
 			</tr>
 <?php
 $book = new isa_book_post();
-$booklist = $book->GetBooks();
+$booklist = $book->GetBooks($search);
 for($i = 0; $i < $booklist->num_rows; $i++)
 {
 	$row = $booklist->fetch_assoc();
 	$alt = "";
 	if(1 == $i % 2) $alt = ' class="alt"';
+	$status = $row['isLend'] ? "借人了" : "还在家";
 	echo '<tr '.$alt.'><td>'.$i.'</td><td>'.$row["book_name"].'</td>';
-	echo '<td>'.$row["book_count"].'</td>';
-	echo '<td>'.$row["ct"].'</td>';
+	echo '<td>'.$status.'</td>';
+	echo '<td><a class="control_link" href="#lend_'.$row['book_id'].'">借出</a> <a class="control_link" href="#del_'.$row['book_id'].'">删除</a></td>';
 	
 }
 ?>
