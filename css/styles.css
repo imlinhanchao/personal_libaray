@@ -94,12 +94,12 @@ span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:cent
 #lend_cancel{background: #CCC;}
 
 /** List **/
-#bool_list{border-collapse:collapse;margin-top:1px;}
+#bool_list{border-collapse:collapse;margin:1px auto;max-width:900px;}
 #bool_list th{color:#FFF;background:#232425;}
 #bool_list td, #bool_list th{border-bottom:1px solid #CCCBCA;padding:7px;text-align:center;}
-#bool_list tr.alt td {color:#000000;background-color:#EAF2D3;}
+#bool_list tr.alt td {color:#000000;background-color:#EEECEB;}
 #bool_list .control_link{margin:5px;}
-.th_number{width:50px;}
-.th_bookname{width:350px;}
-.th_status{width:150px;}
-.th_manager{width:250px;}
+.th_number{width:8%;}
+.th_bookname{width:40%;}
+.th_status{width:20%;}
+.th_manager{}

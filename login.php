@@ -24,7 +24,7 @@ if(null != $username && null != $password)
 <html lang="zh_cn">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <base href="./"/>
+  <base href="<?php echo LOCALHOST; ?>/"/>
   <title> Hancel 's Library | 只为探索和好奇... </title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link href="./css/common.css" rel="stylesheet" type="text/css" />
@@ -34,7 +34,7 @@ if(null != $username && null != $password)
 	<form action="login.php" method="post">
 		<div id="admin">
 			<div id="login">
-				<a href="../" id="logo">
+				<a href="./" id="logo">
 					<h1>管理后台</h1>
 				</a>
 			</div>

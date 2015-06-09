@@ -20,7 +20,7 @@ p.submit label{font-size:0.8em;}
 #join_list tr.alt td{color:#000000;background-color:#EEE;}
 
 /** sprite **/
-.newbook, .search, .logout, .user, .pending, .setting, .password, .booklist, .ebook{background:url(../images/sprite.png) no-repeat;}
+.newbook, .search, .logout, .user, .pending, .setting, .password, .booklist, .ebook{background:#000 url(../images/sprite.png) no-repeat;}
 .newbook{background-position:0 0;}
 .search{background-position:0 -40px;}
 .logout{background-position:0 -80px;}

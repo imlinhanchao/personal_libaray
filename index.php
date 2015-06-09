@@ -1,15 +1,34 @@
 <?php
+session_start();
+require_once("./config.php");
+
 $_common['title'] = "我的图书";
 $_common['page'] = "home";
 $_common['localPath'] = '.';
+
+$_common['head'] = '<script type="text/javascript" src="./js/jquery.fancybox.pack.js" ></script>';
+$_common['head'] = $_common['head'] . '<link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />';
+$_common['head'] = $_common['head'] . '<style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
+
 require($_common['localPath'] . '/content/header.php');
 // get book info API
 require($_common['localPath'] . '/include/class_com_bookapi.php');
 require($_common['localPath'] . '/data/class_book_post.php');
 
+
 $search = "";
 if(isset($_GET['s']))
 	$search = $_GET['s'];
+
+$isAdmin = false;
+if (isset ($_SESSION['sess_user']))
+{
+	$isAdmin = true;
+}
+
+$ReadLink = "";
+$ReadLinkClose = "";
+
 ?>
     <div id="section">
         <ul class="book_list">
@@ -21,6 +40,13 @@ if(isset($_GET['s']))
                 $row = $lstBook->fetch_assoc();
                 $isRead = $book->translateStatus($row['book_isRead']);
                 $isLend = 1 == $row['isLend'] ? "借人了" : "还在家";
+				
+				if($isAdmin && $row['book_isRead'] < 1)
+				{
+					$ReadLink = '<a class="control_link" href="read_'.$row["book_id"].'">';
+					$ReadLinkClose = '</a>';
+				}
+				
                 $html = <<<HTML
 			<li class="book_item">
 				<a href="http://book.douban.com/subject/{$row["book_dbid"]}/" class="book_img" rel="nofollow" target="_blank"><img src="{$row['book_img']}" alt="{$row['book_name']}"/></a>
@@ -33,8 +59,10 @@ if(isset($_GET['s']))
 				</div>
                 <div class="book_status">
                     <span class="sp_btn">這本書</span>
-                    <span class="sp_btn book_isRead" data-status="{$row['book_isRead']}">{$isRead}</span>
-                    <a href="#lend_{$row["book_id"]}" title="想借這本書？" data-status="{$row['isLend']}">
+					{$ReadLink}
+						<span class="sp_btn book_isRead" data-status="{$row['book_isRead']}">{$isRead}</span>
+					{$ReadLinkClose}
+                    <a class="control_link" href="#order_{$row["book_id"]}" title="想借這本書？" data-status="{$row['isLend']}">
                         <span class="sp_btn book_isLend" data-status="{$row['isLend']}">{$isLend}</span>
                     </a>
                 </div>

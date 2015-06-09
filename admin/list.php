@@ -36,9 +36,14 @@ for($i = 0; $i < $booklist->num_rows; $i++)
 	$alt = "";
 	if(1 == $i % 2) $alt = ' class="alt"';
 	$status = $row['isLend'] ? "借人了" : "还在家";
+	$status .= '/' . $book->translateStatus($row['book_isRead']);
 	echo '<tr '.$alt.'><td>'.$i.'</td><td>'.$row["book_name"].'</td>';
 	echo '<td>'.$status.'</td>';
-	echo '<td><a class="control_link" href="#lend_'.$row['book_id'].'">借出</a> <a class="control_link" href="#del_'.$row['book_id'].'">删除</a></td>';
+	echo '<td>'.
+	'<a class="control_link" href="#read_'.$row['book_id'].'">已阅</a>'.
+	'<a class="control_link" href="#lend_'.$row['book_id'].'">'.($row['isLend'] ? '归还' : '借出').'</a>'.
+	'<a class="control_link" href="#del_'.$row['book_id'].'">删除</a>'.
+	'</td>';
 	
 }
 ?>

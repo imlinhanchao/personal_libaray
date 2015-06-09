@@ -5,10 +5,10 @@ require_once("./verify.php");
 $_common['title'] = "管理后台 &laquo; 创软图书馆";
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
-$_common['head'] = "<script type=\"text/javascript\" src=\"" . LOCALHOST . "/js/admin.js\" ></script>";
-$_common['head'] = $_common['head'] . "<script type=\"text/javascript\" src=\"" . LOCALHOST . "/js/jquery.fancybox.pack.js\" ></script>";
-$_common['head'] = $_common['head'] . "<link rel=\"stylesheet\" type=\"text/css\" href=\"". LOCALHOST . "/css/jquery.fancybox.css\" />";
-$_common['head'] = $_common['head'] . "<style type=\"text/css\">.fancybox-inner{overflow: auto!important;}</style>";
+$_common['head'] = '<script type="text/javascript" src="./js/admin.js" ></script>';
+$_common['head'] = $_common['head'] . '<script type="text/javascript" src="./js/jquery.fancybox.pack.js" ></script>';
+$_common['head'] = $_common['head'] . '<link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />';
+$_common['head'] = $_common['head'] . '<style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
 
 require($_common['localPath'] . '/content/header.php');
 ?>

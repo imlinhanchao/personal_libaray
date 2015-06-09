@@ -15,25 +15,17 @@ require_once($localPath . '/config.php');
 <html lang="zh_cn">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <title> <?php echo $title; ?> </title>
+  <title> <?php echo $title; ?> </title>
+  <base href="<?php echo LOCALHOST; ?>/">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link href="<?php echo LOCALHOST; ?>/css/common.css" rel="stylesheet" type="text/css" />
-  <link href="<?php echo LOCALHOST; ?>/css/styles.css" rel="stylesheet" type="text/css" />
-  <script src="<?php echo LOCALHOST; ?>/js/jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo LOCALHOST; ?>/js/common.js" ></script>
+  <link href="./css/common.css" rel="stylesheet" type="text/css" />
+  <link href="./css/styles.css" rel="stylesheet" type="text/css" />
+  <script src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/common.js" ></script>
   <?php echo $head; ?>
   <script type="text/javascript">
 	jQuery(document).ready(function($){
 	
 	});
   </script>
-  <!--[if lt IE 8]>
-  <script type="text/javascript" src="<?php echo LOCALHOST; ?>/js/IEPNG-min.js"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('#logo');
-  </script>
-  <![endif]-->
-  <!--[if !IE]><!-->
-  	
-  <!--<![endif]-->
  </head>
