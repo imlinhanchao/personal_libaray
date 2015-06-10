@@ -5,10 +5,10 @@ require_once("./verify.php");
 $_common['title'] = "书籍管理 &laquo; 创软图书馆";
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
-$_common['head'] = "<script type=\"text/javascript\" src=\"" . LOCALHOST . "/js/admin.js\" ></script>";
-$_common['head'] = $_common['head'] . "<script type=\"text/javascript\" src=\"" . LOCALHOST . "/js/jquery.fancybox.pack.js\" ></script>";
-$_common['head'] = $_common['head'] . "<link rel=\"stylesheet\" type=\"text/css\" href=\"". LOCALHOST . "/css/jquery.fancybox.css\" />";
-$_common['head'] = $_common['head'] . "<style type=\"text/css\">.fancybox-inner{overflow: auto!important;}</style>";
+$_common['head'] = '<script type="text/javascript" src="./js/admin.js" ></script>';
+$_common['head'] = $_common['head'] . '<script type="text/javascript" src="./js/jquery.fancybox.pack.js" ></script>';
+$_common['head'] = $_common['head'] . '<link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />';
+$_common['head'] = $_common['head'] . '<style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
 
 require($_common['localPath'] . '/content/header.php');
 require($_common['localPath'] . '/data/class_book_post.php');
@@ -29,10 +29,10 @@ if(isset($_GET['s']))
 			</tr>
 <?php
 $book = new isa_book_post();
-$booklist = $book->GetBooks($search);
-for($i = 0; $i < $booklist->num_rows; $i++)
+$bookList = $book->GetBooks($search);
+for($i = 0; $i < $bookList->num_rows; $i++)
 {
-	$row = $booklist->fetch_assoc();
+	$row = $bookList->fetch_assoc();
 	$alt = "";
 	if(1 == $i % 2) $alt = ' class="alt"';
 	$status = $row['isLend'] ? "借人了" : "还在家";

@@ -8,12 +8,12 @@
 		}
 		var index = url.substr(0, url.length - 1).lastIndexOf('/') + 1;
 		url = url.substr(index, url.length - index - 1);
-		FrameBox('post.php?id=' + url);
+		FrameBox('./admin/post.php?id=' + url);
 		return false;
 	});
 	$("#postisbn").click(function(){
 		var isbn = $("#isbn").val();
-		FrameBox('post.php?isbn=' + isbn);
+		FrameBox('./admin/post.php?isbn=' + isbn);
 		return false;
 	});
 });

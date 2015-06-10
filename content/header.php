@@ -3,6 +3,7 @@ $title = "我的书 | 书是人类灵魂的阶梯";
 $head = "";
 $script = "";
 $type = "logo";
+$base = LOCALHOST;
 $localPath = ".";
 if(isset($_common['title']))
 	$title = $_common['title'];
@@ -12,6 +13,8 @@ if(isset($_common['head']))
 	$head = $_common['head'];
 if(isset($_common['script']))
 	$script = $_common['script'];
+if(isset($_common['base']))
+    $base = $_common['base'];
 if(isset($_common['localPath']))
 	$localPath = $_common['localPath'];
 require_once($localPath . '/config.php');
@@ -20,17 +23,17 @@ require_once($localPath . '/config.php');
 <html lang="zh_cn">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <base href="<?php echo LOCALHOST; ?>/">
-  <title> <?php echo $title; ?> </title>
+  <base href="<?=$base; ?>/">
+  <title> <?=$title; ?> </title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link href="./css/common.css" rel="stylesheet" type="text/css" />
   <link href="./css/styles.css" rel="stylesheet" type="text/css" />
   <script src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/common.js" ></script>
-  <?php echo $head; ?>
+  <?=$head; ?>
   <script type="text/javascript">
 	jQuery(document).ready(function($){
-  <?php echo $script; ?>
+        <?=$script; ?>
 	});
   </script>
  </head>
