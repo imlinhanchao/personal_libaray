@@ -14,15 +14,54 @@
 			case 'lend':
 				FrameBox('lend.php?t=1&id=' + id, 300, 200);
 				break;
-			case 'read':
-				RequestAjax('ajax.php?r='+id, function(obj){
-					
-				});
-				break;
+            case 'read':
+                RequestAjax('ajax.php?r='+id, function(obj){
+                    if(obj < 1)
+                    {
+                        alert("网络超时，请稍后重试...");
+                    }
+                    else
+                    {
+                        location.reload();
+                    }
+                });
+                break;
+            case 'begin':
+                RequestAjax('ajax.php?b='+id, function(obj){
+                    if(obj < 1)
+                    {
+                        alert("网络超时，请稍后重试...");
+                    }
+                    else
+                    {
+                        location.reload();
+                    }
+                });
+                break;
 			case 'del':
-				RequestAjax('ajax.php?r='+id, function(obj){
-					
-				});
+				if(confirm("是否確認删除该书籍？"))
+					RequestAjax('ajax.php?d='+id, function(obj){
+                        if(obj < 1)
+                        {
+                            alert("网络超时，请稍后重试...");
+                        }
+                        else
+                        {
+                            location.reload();
+                        }
+					});
+				break;
+            case 'back':
+                RequestAjax('ajax.php?k='+id, function(obj){
+                    if(obj < 1)
+                    {
+                        alert("网络超时，请稍后重试...");
+                    }
+                    else
+                    {
+                        location.reload();
+                    }
+                });
 				break;
 			default: return true;
 		}
@@ -32,7 +71,7 @@
 
 function RequestAjax(url, fn)
 {
-	$get(url, fn);
+    $.get(url, fn);
 }
 
 function FrameBox(link, w, h)

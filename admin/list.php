@@ -40,8 +40,9 @@ for($i = 0; $i < $booklist->num_rows; $i++)
 	echo '<tr '.$alt.'><td>'.$i.'</td><td>'.$row["book_name"].'</td>';
 	echo '<td>'.$status.'</td>';
 	echo '<td>'.
+	'<a class="control_link" href="#begin_'.$row['book_id'].'">开始看</a>'.
 	'<a class="control_link" href="#read_'.$row['book_id'].'">已阅</a>'.
-	'<a class="control_link" href="#lend_'.$row['book_id'].'">'.($row['isLend'] ? '归还' : '借出').'</a>'.
+	'<a class="control_link" href="#'.($row['isLend'] ? 'back' : 'lend').'_'.$row['book_id'].'">'.($row['isLend'] ? '归还' : '借出').'</a>'.
 	'<a class="control_link" href="#del_'.$row['book_id'].'">删除</a>'.
 	'</td>';
 	

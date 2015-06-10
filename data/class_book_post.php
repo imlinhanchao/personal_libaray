@@ -2,9 +2,9 @@
 if(isset($_common['localPath']))
 	$localPath = $_common['localPath'];
 else
-    $localPath = ".";
-require_once($localPath.'/config.php');
-require_once($localPath.'/include/class_com_sql.php'); // a mysql class.
+    $localPath = "..";
+require_once($localPath.'\config.php');
+require_once($localPath.'\include\class_com_sql.php'); // a mysql class.
 
 class isa_book_post
 {
@@ -40,7 +40,22 @@ class isa_book_post
 		$result = $db->insert("cc_web_book", $this->getInsert());
 		return $result;
 	}
-	
+
+    function Read($id, $status)
+    {
+        $db = new cSql();
+        $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $result = $db->query($this->SetBookStatus($this->Format($id), $status));
+        return $result;
+    }
+
+    function Kill($id)
+    {
+        $db = new cSql();
+        $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $result = $db->query($this->EnableBook($this->Format($id), 0));
+        return $result;
+    }
 	function GetBooks($search)
 	{
 		$db = new cSql();
@@ -140,7 +155,7 @@ class isa_book_post
         $data["book_publisher"] =	$this->_publisher;
         $data["book_pages"]     =	$this->_pages;
         $data["book_ISBN"] 	    =	$this->_ISBN;
-        $data["book_pubdate"] 	=	$this->_pubDate;
+        $data["book_pubDate"] 	=	$this->_pubDate;
         $data["book_create"] 	= 	"now()";
 
         return $data;
@@ -158,5 +173,15 @@ class isa_book_post
 		return $sql;
 	}
 
+    protected function SetBookStatus($id, $status)
+    {
+        $sql = "update `cc_web_book` set `book_isRead` = '" . $status . "' where `book_id` = '" . $id . "'";
+        return $sql;
+    }
+    protected function EnableBook($id, $enable)
+    {
+        $sql = "update `cc_web_book` set `book_valid` = '" . $enable . "' where `book_id` = '" . $id . "'";
+        return $sql;
+    }
 }
 ?>
