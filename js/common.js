@@ -14,6 +14,9 @@
 			case 'lend':
 				FrameBox('lend.php?t=1&id=' + id, 300, 200);
 				break;
+			case 'agree':
+				FrameBox('lend.php?t=-2&id=' + id, 300, 200);
+				break;
             case 'read':
                 RequestAjax('ajax.php?r='+id, function(obj){
                     if(obj < 1)
@@ -87,5 +90,11 @@ function FrameBox(link, w, h)
 		height : h,
 		scrolling : 'no'
 	});
+}
 
+function updateStatus(book_Id)
+{
+    RequestAjax("ajax.php?s=" + book_Id, function(obj){
+        // Update book status
+    });
 }

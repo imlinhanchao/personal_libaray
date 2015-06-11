@@ -1,6 +1,7 @@
 <?php
 $_common['localPath'] = '.';
 require('./data/class_book_post.php');
+require('./data/class_book_lend.php');
 require_once("./admin/verify.php");
 $book = new isa_book_post();
 if(isset($_GET['r']))
@@ -17,4 +18,9 @@ else if(isset($_GET['d']))
 {
     // delete book
     echo $book->Kill($_GET['d']);
+}
+else if(isset($_GET['k']))
+{
+    $lend = new isa_book_lend(["BookId"=>$_GET['k']]);
+    echo $lend->BackBook();
 }

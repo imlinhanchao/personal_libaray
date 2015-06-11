@@ -48,7 +48,7 @@ class cSql
                 $query .= $v . ",";
         }
 
-        $query = trim($query, ",") . "WHERE 1=1 ";
+        $query = trim($query, ",") . " WHERE 1=1 ";
 
         foreach ($where as $k => $v) {
             $query .= "AND `" . $k . "` = ";
@@ -57,7 +57,7 @@ class cSql
             else
                 $query .= $v . "";
         }
-
+        //echo $query;
         return $this->query($query);
     }
 

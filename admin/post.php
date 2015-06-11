@@ -5,11 +5,36 @@ require_once("./verify.php");
 $_common['title'] = "管理后台 &laquo; 创软图书馆";
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
-
-require($_common['localPath'] . '/content/headlite.php');
-
 // get book info
 require($_common['localPath'] . '/include/class_com_bookapi.php');
+// Get Form
+if(isset($_POST['bookname']))
+{
+
+    require($_common['localPath'] . '/data/class_book_post.php');
+    $book = new isa_book_post(
+        $_POST["dbid"],
+        $_POST["bookimg"],
+        $_POST["bookname"],
+        $_POST["bookauthor"],
+        $_POST["bookpages"],
+        $_POST["bookpublisher"],
+        $_POST["bookisbn"],
+        $_POST["bookpubdate"]
+    );
+    try
+    {
+        $book->Insert();
+        $_common['script'] = "<script>parent.location.reload();</script>";
+    }
+    catch (Exception $e) {
+        $_warning['t'] = "error";
+        $_warning['meg'] = $e->getMessage();
+        require('./content/warning.php');
+    }
+
+}
+
 $db_id = "";
 $isbn = "";
 if(isset($_GET["id"]))
@@ -29,9 +54,10 @@ if(!isset($dbInfo["id"]))
 	exit(0);
 }
 
+require($_common['localPath'] . '/content/headlite.php');
 ?>
  <body class="dialog">
- <form action="./admin/post.php?id=<?=$_GET["id"]?>" method="post">
+ <form action="./admin/post.php" method="post">
 	<div id="post">
 		<div class="post_content">
 			<div class="thumb"><img src="<?=$dbInfo['images']['large']; ?>" alt="<?=$dbInfo['subtitle']; ?>" class="pic"/></div>
@@ -61,33 +87,3 @@ if(!isset($dbInfo["id"]))
  </form>
  </body>
 </html>
-
-<?php
-// Get Form
-if(isset($_POST['bookname']))
-{
-
-	require($_common['localPath'] . '/data/class_book_post.php');
-	$book = new isa_book_post(
-        $_POST["dbid"],
-        $_POST["bookimg"],
-        $_POST["bookname"],
-        $_POST["bookauthor"],
-        $_POST["bookpages"],
-        $_POST["bookpublisher"],
-        $_POST["bookisbn"],
-        $_POST["bookpubdate"]
-    );
-	try 
-	{
-		$book->Insert();
-        echo "<script>parent.location = parent.location;</script>";
-	} 
-	catch (Exception $e) {
-		$_warning['t'] = "error";
-		$_warning['meg'] = $e->getMessage();
-		require('./content/warning.php');
-	}
-
-}
-?>

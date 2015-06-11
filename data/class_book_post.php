@@ -133,6 +133,16 @@ class isa_book_post
         }
     }
 
+    function translateLend($status)
+    {
+        switch($status)
+        {
+            case -1: return "被订了";
+            case  0: return "还在家";
+            case  1: return "被借了";
+        }
+    }
+
 	protected function Format($value)
 	{
 		$value = htmlspecialchars($value, ENT_QUOTES);
@@ -142,9 +152,9 @@ class isa_book_post
 	
 	protected function getList($search)
 	{
-		$sql = "select *, !ISNULL((select `lend_id` from `cc_web_lend` as ld where ld.`book_id` = bk.`book_id` and `lend_valid` = 1)) isLend from `cc_web_book` as bk".
+		$sql = "select *, IFNULL((SELECT `lend_valid` FROM `cc_web_lend` AS ld WHERE ld.`book_id` = bk.`book_id` and `lend_valid` != -2), 0) isLend from `cc_web_book` as bk".
             " where `book_valid` = 1 and (`book_name` like '%".$search."%' or `book_author` like '%".$search."%' or `book_publisher` like '%".$search."%' or `book_ISBN` = '".$search."') order by `book_id` desc";
-		return $sql;
+        return $sql;
 	}
 
 	protected function getInsert()

@@ -32,7 +32,7 @@ class isa_book_lend
 	{
 		$db = new cSql();
 		$db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$result = $db->insert("cc_web_book", $this->getInsert());
+		$result = $db->insert("cc_web_lend", $this->getInsert());
 		return $result;
 	}
 
@@ -40,7 +40,7 @@ class isa_book_lend
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->insert("cc_web_book", $this->getBackBook(), ["book_id" => $this->_BookId, "lend_valid" => "1"]);
+        $result = $db->update("cc_web_lend", $this->getBackBook(), ["book_id" => $this->_BookId, "lend_valid" => "1"]);
         return $result;
     }
 
@@ -48,7 +48,7 @@ class isa_book_lend
 	{
 		$db = new cSql();
 		$db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$sql = $this->getList();
+		$sql = $this->getList($this->_BookId);
 		$result = $db->query($sql);
 		return $result;
 	}
@@ -75,9 +75,13 @@ class isa_book_lend
 		return $value;
 	}
 	
-	protected function getList()
+	protected function getList($id)
 	{
-		$sql = "select * from `cc_web_lend` where `book_id` = '" . $id . "' order by `lend_date` desc";
+        $sql = "select ld.*, `book_name`, `book_dbid` from `cc_web_lend` as ld ";
+        $sql .= "left join `cc_web_book` as bk ";
+        $sql .= "on ld.`book_id` = bk.`book_id` ";
+        $sql .= "where `book_id` = '" . $id . "' and `book_valid` = 1";
+        $sql .= "order by `lend_date` desc limit 1";
 		return $sql;
 	}
 
@@ -100,9 +104,13 @@ class isa_book_lend
         return $data;
 	}
 
-	protected function getById($id)
+	protected function getByName($name)
 	{
-		$sql = "select * from `cc_web_lend` where `book_id` = '" . $id . "' order by `lend_date` desc limit 1";
+		$sql = "select ld.*, `book_name`, `book_dbid` from `cc_web_lend` as ld ";
+        $sql .= "left join `cc_web_book` as bk ";
+        $sql .= "on ld.`book_id` = bk.`book_id` ";
+        $sql .= "where `book_name` = '" . $name . "' and `book_valid` = 1 ";
+        $sql .= "order by `lend_date` desc ";
 		return $sql;
 	}
 

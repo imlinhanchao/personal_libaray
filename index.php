@@ -6,9 +6,10 @@ $_common['title'] = "我的图书";
 $_common['page'] = "home";
 $_common['localPath'] = '.';
 
-$_common['head'] = '<script type="text/javascript" src="./js/jquery.fancybox.pack.js" ></script>';
-$_common['head'] = $_common['head'] . '<link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />';
-$_common['head'] = $_common['head'] . '<style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
+$_common['head'] =
+'<script type="text/javascript" src="./js/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />
+<style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
 
 require($_common['localPath'] . '/content/header.php');
 // get book info API
@@ -32,45 +33,40 @@ $ReadLinkClose = "";
 ?>
     <div id="section">
         <ul class="book_list">
-            <?php
-            $book = new isa_book_post();
-            $lstBook = $book->GetBooks($search);
-            for($i = 0; $i < $lstBook->num_rows; $i++)
+<?php
+        $book = new isa_book_post();
+        $lstBook = $book->GetBooks($search);
+        for($i = 0; $i < $lstBook->num_rows; $i++)
+        {
+            $row = $lstBook->fetch_assoc();
+            $isRead = $book->translateStatus($row['book_isRead']);
+            $isLend = $book->translateLend($row['isLend']);
+
+            if($isAdmin && $row['book_isRead'] < 1)
             {
-                $row = $lstBook->fetch_assoc();
-                $isRead = $book->translateStatus($row['book_isRead']);
-                $isLend = 1 == $row['isLend'] ? "借人了" : "还在家";
-				
-				if($isAdmin && $row['book_isRead'] < 1)
-				{
-					$ReadLink = '<a class="control_link" href="read_'.$row["book_id"].'">';
-					$ReadLinkClose = '</a>';
-				}
-				
-                $html = <<<HTML
+                $ReadLink = '<a class="control_link" href="#read_'.$row["book_id"].'">';
+                $ReadLinkClose = '</a>';
+            }?>
 			<li class="book_item">
-				<a href="http://book.douban.com/subject/{$row["book_dbid"]}/" class="book_img" rel="nofollow" target="_blank"><img src="{$row['book_img']}" alt="{$row['book_name']}"/></a>
+				<a href="http://book.douban.com/subject/<?=$row["book_dbid"]?>/" class="book_img" rel="nofollow" target="_blank"><img src="<?=$row['book_img']?>" alt="<?=$row['book_name']?>"/></a>
 				<div class="book_desc">
-					<h2 class="t_over title"><a href="http://book.douban.com/subject/{$row["book_dbid"]}/" title="{$row['book_name']}" target="_blank">{$row['book_name']}</a></h2>
-					<p>作者:  {$row['book_author']}</p>
-					<p>出版社: {$row['book_publisher']}</p>
-					<p>页数: {$row['book_pages']}</p>
-					<p>ISBN: {$row['book_ISBN']}</p>
+					<h2 class="t_over title"><a href="http://book.douban.com/subject/<?=$row["book_dbid"]?>/" title="<?=$row['book_name']?>" target="_blank"><?=$row['book_name']?></a></h2>
+					<p>作者:  <?=$row['book_author']?></p>
+					<p>出版社: <?=$row['book_publisher']?></p>
+					<p>页数: <?=$row['book_pages']?></p>
+					<p>ISBN: <?=$row['book_ISBN']?></p>
 				</div>
-                <div class="book_status">
+                <div class="book_status" id="book_<?=$row["book_id"]?>">
                     <span class="sp_btn">這本書</span>
-					{$ReadLink}
-						<span class="sp_btn book_isRead" data-status="{$row['book_isRead']}">{$isRead}</span>
-					{$ReadLinkClose}
-                    <a class="control_link" href="#order_{$row["book_id"]}" title="想借這本書？" data-status="{$row['isLend']}">
-                        <span class="sp_btn book_isLend" data-status="{$row['isLend']}">{$isLend}</span>
+					<?=$ReadLink?>
+						<span class="sp_btn book_isRead" data-status="<?=$row['book_isRead']?>"><?=$isRead?></span>
+					<?=$ReadLinkClose?>
+                    <a class="control_link" href="#order_<?=$row["book_id"]?>" title="想借這本書？" data-status="<?=$row['isLend']?>">
+                        <span class="sp_btn book_isLend" data-status="<?=$row['isLend']?>"><?=$isLend?></span>
                     </a>
                 </div>
 			</li>
-HTML;
-                echo $html;
-            }
-            ?>
+  <?php } ?>
         </ul>
     </div>
 <?php
