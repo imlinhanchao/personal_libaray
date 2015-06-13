@@ -39,26 +39,31 @@ if(isset($_GET['s']))
             $status = $book->translateLend($row['isLend']);
             $status .= '/' . $book->translateStatus($row['book_isRead']);
 
-            $lend_action = "lend";
-            $lend_word = "借出";
+            $read_action = "lend";
+            $read_word = "借出";
+            $read_id = $row['book_id'];
             switch($row['isLend'])
             {
-                case  1: $lend_action = "back"; $lend_word = "归还"; break;
-                case  0: $lend_action = "lend"; $lend_word = "借出"; break;
-                case -1: $lend_action = "agree_" . $row['Lend_Id']; $lend_word = "审批"; break;
-            } ?>
+                case  1: $read_action = "begin"; $read_word = "重新看"; break;
+                case  0: $read_action = "begin"; $read_word = "开始看"; break;
+                case -1: $read_action = "read";  $read_word = "已　阅"; break;
+            }
+
+            $lend_action = "lend";
+            $lend_word = "借出";
+            $lend_id = $row['book_id'];
+            switch($row['isLend'])
+            {
+                case  1: $lend_action = "back";  $lend_word = "归还"; $lend_id = $row['Lend_Id']; break;
+                case  0: $lend_action = "lend";  $lend_word = "借出"; break;
+                case -1: $lend_action = "agree"; $lend_word = "审批"; $lend_id = $row['Lend_Id']; break;
+            }?>
             <tr <?=$alt?>>
                 <td><?=$i?></td><td><?=$row["book_name"]?></td>
                 <td><?=$status?></td>
                 <td>
-                    <?php switch($row['book_isRead']) {
-                          case 0: ?>
-                    <a class="control_link" href="#begin_<?=$row['book_id']?>">开始看</a> <?php break;
-                          case -1: ?>
-                    <a class="control_link" href="#read_<?=$row['book_id']?>">已　阅</a>    <?php break;
-                          case 1: ?>
-                    <a class="control_link" href="#begin_<?=$row['book_id']?>">重新看</a> <?php } ?>
-                    <a class="control_link" href="#<?=$lend_action?>_<?=$row['book_id']?>"><?=$lend_word?></a>
+                    <a class="control_link" href="#<?=$read_action?>_<?=$read_id?>"><?=$read_word?></a>
+                    <a class="control_link" href="#<?=$lend_action?>_<?=$lend_id?>"><?=$lend_word?></a>
                     <a class="control_link" href="#del_<?=$row['book_id']?>">删除</a>
                 </td>
             </tr>

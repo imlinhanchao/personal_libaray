@@ -3,7 +3,7 @@
 		var datas = this.href.split('#');
 		if(datas.length != 2) return true;
 		datas = datas[1].split('_');
-		if(datas.length != 2) return true;
+		if(datas.length < 2) return true;
 		var type = datas[0];
 		var id = datas[1];
 		switch(type)

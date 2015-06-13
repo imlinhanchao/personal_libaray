@@ -19,6 +19,7 @@ $lend_id = "";
 $lend_book = "";
 $lend_Man = "";
 $lend_type = "1";
+$lend_button = "借出";
 
 if(isset($_POST["lend_id"]))
 {
@@ -36,7 +37,7 @@ if(isset($_POST["lend_id"]))
     }
     else
     {
-        $lend = new isa_book_lend(["Id"=>$lend_id, "LendMan"=>$_POST["lend_man"], "Valid"=>1]);
+        $lend = new isa_book_lend(["Id"=>$lend_id, "LendMan"=>$_POST["lend_man"], "Valid"=>$_POST["lend_check"]]);
         $result = $lend->Agree();
     }
     if($result > 0)
@@ -51,6 +52,14 @@ else if(isset($_GET["id"]))
     if(isset($_GET["t"]))
         $lend_type = $_GET["t"];
     $lend_id = $_GET["id"];
+
+    switch($lend_type)
+    {
+        case -1: $lend_button = "订了";
+        case  1: $lend_button = "借出";
+        case  2: $lend_button = "审批";
+    }
+
     if($lend_type != 2)
     {
         $book = new isa_book_post();
@@ -64,8 +73,9 @@ else if(isset($_GET["id"]))
     {
         $lend = new isa_book_lend(["Id"=>$lend_id]);
         $theLend = $lend->GetLendRecords();
-        $lend_book = $theLend->fetch_assoc()["book_name"];
-        $lend_Man = $theLend->fetch_assoc()["Lend_Man"];
+        $theLend= $theLend->fetch_assoc();
+        $lend_book = $theLend["book_name"];
+        $lend_Man = $theLend["lend_Man"];
     }
 
 }
@@ -85,9 +95,17 @@ require($_common['localPath'] . '/content/header.php');
 			<input type="text" readonly name="lend_book" class="txt_noBorder" id="lend_book" maxlength="50" value="<?=$lend_book?>" />
 			<input type="hidden" name="lend_id" id="lend_id" value="<?=$lend_id?>" />
 			<input type="hidden" name="lend_type" id="lend_type" value="<?=$lend_type?>" />
+        </p>
+        <p>
+        <?php if($lend_type == 2){?>
+            <input type="radio" name="lend_check" id="lend_check_yes" value="1" checked/>
+            <label for="lend_check_yes" class="radio_label">可以</label>
+            <input type="radio" name="lend_check" id="lend_check_no" value="-2" />
+            <label for="lend_check_no" class="radio_label">不行</label>
+            <?php }?>
 		</p>
 		<p>
-			<input type="submit" name="lend_submit" id="lend_submit" class="form_btn" value="<?=($lend_type == 1 ? '借出':'订了')?>" />
+			<input type="submit" name="lend_submit" id="lend_submit" class="form_btn" value="<?=$lend_button?>" />
 			<input type="button" name="lend_cancel" id="lend_cancel" class="form_btn" value="算了" />
 		</p>
 	</form>

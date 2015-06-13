@@ -117,13 +117,13 @@ class isa_book_lend
 
 	protected function getLend($id)
 	{
-        $sql = $this->getData("`book_id` = '" . $id . "' and `book_valid` = 1");
+        $sql = $this->getData("`lend_id` = '" . $id . "' and `book_valid` = 1");
 		return $sql;
 	}
 
     protected function getUpdateStatus()
     {
-        $data["book_id"] 	    =	$this->_BookId;
+        $data["Lend_id"] 	    =	$this->_Id;
         $data["lend_valid"] 	=	$this->_Valid;
         $data["lend_back"] 	    = 	"now()";
 
