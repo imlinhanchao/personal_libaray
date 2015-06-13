@@ -21,6 +21,7 @@ else if(isset($_GET['d']))
 }
 else if(isset($_GET['k']))
 {
-    $lend = new isa_book_lend(["BookId"=>$_GET['k']]);
+    // Back Book
+    $lend = new isa_book_lend(["BookId"=>$_GET['k'], ["Valid"=>0]]);
     echo $lend->BackBook();
 }

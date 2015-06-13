@@ -29,24 +29,24 @@ if(isset($_GET['s']))
 				<th class="th_manager">管理</th>
 			</tr>
 <?php
-$book = new isa_book_post();
-$bookList = $book->GetBooks($search);
-for($i = 0; $i < $bookList->num_rows; $i++)
-{
-	$row = $bookList->fetch_assoc();
-	$alt = "";
-	if(1 == $i % 2) $alt = ' class="alt"';
-	$status = $book->translateLend($row['isLend']);
-	$status .= '/' . $book->translateStatus($row['book_isRead']);
+        $book = new isa_book_post();
+        $bookList = $book->GetBooks($search);
+        for($i = 0; $i < $bookList->num_rows; $i++)
+        {
+            $row = $bookList->fetch_assoc();
+            $alt = "";
+            if(1 == $i % 2) $alt = ' class="alt"';
+            $status = $book->translateLend($row['isLend']);
+            $status .= '/' . $book->translateStatus($row['book_isRead']);
 
-    $lend_action = "lend";
-    $lend_word = "借出";
-    switch($row['isLend'])
-    {
-        case  1: $lend_action = "back"; $lend_word = "归还"; break;
-        case  0: $lend_action = "lend"; $lend_word = "借出"; break;
-        case -1: $lend_action = "agree"; $lend_word = "审批"; break;
-    } ?>
+            $lend_action = "lend";
+            $lend_word = "借出";
+            switch($row['isLend'])
+            {
+                case  1: $lend_action = "back"; $lend_word = "归还"; break;
+                case  0: $lend_action = "lend"; $lend_word = "借出"; break;
+                case -1: $lend_action = "agree_" . $row['Lend_Id']; $lend_word = "审批"; break;
+            } ?>
             <tr <?=$alt?>>
                 <td><?=$i?></td><td><?=$row["book_name"]?></td>
                 <td><?=$status?></td>
@@ -62,11 +62,9 @@ for($i = 0; $i < $bookList->num_rows; $i++)
                     <a class="control_link" href="#del_<?=$row['book_id']?>">删除</a>
                 </td>
             </tr>
-<?php } ?>
+<?php   } ?>
         </table>
 
 	</div>
 </form>
-<?php
-require($_common['localPath'] . '/content/footer.php');
-?>
+<?php require($_common['localPath'] . '/content/footer.php'); ?>

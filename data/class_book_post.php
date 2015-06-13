@@ -152,8 +152,12 @@ class isa_book_post
 	
 	protected function getList($search)
 	{
-		$sql = "select *, IFNULL((SELECT `lend_valid` FROM `cc_web_lend` AS ld WHERE ld.`book_id` = bk.`book_id` and `lend_valid` != -2), 0) isLend from `cc_web_book` as bk".
-            " where `book_valid` = 1 and (`book_name` like '%".$search."%' or `book_author` like '%".$search."%' or `book_publisher` like '%".$search."%' or `book_ISBN` = '".$search."') order by `book_id` desc";
+		$sql = "SELECT *,
+        IFNULL((SELECT `lend_valid` FROM `cc_web_lend` AS ld WHERE ld.`book_id` = bk.`book_id` AND `lend_valid` != -2 limit 1 ORDER BY `lend_date` DESC ), 0) isLend,
+        IFNULL((SELECT `lend_Id` FROM `cc_web_lend` AS ld WHERE ld.`book_id` = bk.`book_id` AND `lend_valid` != -2 limit 1 ORDER BY `lend_date` DESC ), 0) Lend_Id
+        FROM `cc_web_book` AS bk
+        WHERE `book_valid` = 1 AND (`book_name` LIKE '%".$search."%' OR `book_author` LIKE '%".$search."%' OR `book_publisher` LIKE '%".$search."%' OR `book_ISBN` = '".$search."')
+        ORDER BY `book_id` DESC";
         return $sql;
 	}
 

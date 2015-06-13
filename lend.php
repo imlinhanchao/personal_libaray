@@ -17,19 +17,28 @@ require($_common['localPath'] . '/data/class_book_lend.php');
 
 $lend_id = "";
 $lend_book = "";
+$lend_Man = "";
 $lend_type = "1";
 
 if(isset($_POST["lend_id"]))
 {
     if(isset($_POST["lend_type"]))
         $lend_type = $_POST["lend_type"];
-    if($lend_type == "1")
+    if($lend_type > 0) // 大于零为管理员权限，如：1（借出），2（同意）
     {
         require_once("./admin/verify.php");
     }
     $lend_id = $_POST["lend_id"];
-    $lend = new isa_book_lend(["BookId"=>$lend_id, "LendMan"=>$_POST["lend_man"], "Valid"=>$lend_type]);
-    $result = $lend->Insert();
+    if($lend_type != 2)
+    {
+        $lend = new isa_book_lend(["BookId"=>$lend_id, "LendMan"=>$_POST["lend_man"], "Valid"=>$lend_type]);
+        $result = $lend->Insert();
+    }
+    else
+    {
+        $lend = new isa_book_lend(["Id"=>$lend_id, "LendMan"=>$_POST["lend_man"], "Valid"=>1]);
+        $result = $lend->Agree();
+    }
     if($result > 0)
     {
         $_common['script'] =
@@ -42,12 +51,23 @@ else if(isset($_GET["id"]))
     if(isset($_GET["t"]))
         $lend_type = $_GET["t"];
     $lend_id = $_GET["id"];
-    $book = new isa_book_post();
-    $theBook = $book->GetBookById($lend_id);
-    if($theBook->num_rows > 0)
-        $lend_book = $theBook->fetch_assoc()["book_name"];
+    if($lend_type != 2)
+    {
+        $book = new isa_book_post();
+        $theBook = $book->GetBookById($lend_id);
+        if($theBook->num_rows > 0)
+            $lend_book = $theBook->fetch_assoc()["book_name"];
+        else
+            $lend_id = "";
+    }
     else
-        $lend_id = "";
+    {
+        $lend = new isa_book_lend(["Id"=>$lend_id]);
+        $theLend = $lend->GetLendRecords();
+        $lend_book = $theLend->fetch_assoc()["book_name"];
+        $lend_Man = $theLend->fetch_assoc()["Lend_Man"];
+    }
+
 }
 
 require($_common['localPath'] . '/content/header.php');
@@ -58,13 +78,13 @@ require($_common['localPath'] . '/content/header.php');
 	<form action="lend.php" method="post">
 		<p>
 			<label for="lend_man" class="txt_title">我是</label>
-			<input type="text" name="lend_man" class="txt_noBorder" id="lend_man" maxlength="10" />
+			<input type="text" name="lend_man" class="txt_noBorder" id="lend_man" maxlength="10" value="<?=$lend_Man?>" />
 		</p>
 		<p>
 			<label for="lend_book" class="txt_title">想借</label>
-			<input type="text" readonly name="lend_book" class="txt_noBorder" id="lend_book" maxlength="50" value="<?=$lend_book; ?>" />
-			<input type="hidden" name="lend_id" id="lend_id" value="<?=$lend_id; ?>" />
-			<input type="hidden" name="lend_type" id="lend_type" value="<?=$lend_type; ?>" />
+			<input type="text" readonly name="lend_book" class="txt_noBorder" id="lend_book" maxlength="50" value="<?=$lend_book?>" />
+			<input type="hidden" name="lend_id" id="lend_id" value="<?=$lend_id?>" />
+			<input type="hidden" name="lend_type" id="lend_type" value="<?=$lend_type?>" />
 		</p>
 		<p>
 			<input type="submit" name="lend_submit" id="lend_submit" class="form_btn" value="<?=($lend_type == 1 ? '借出':'订了')?>" />

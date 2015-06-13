@@ -2,7 +2,7 @@
 class cSql
 {
 	private $db;
-	
+
 	function con($localhost, $user, $password, $database)
 	{
 		$this->db = new mysqli($localhost, $user, $password, $database);
@@ -10,7 +10,7 @@ class cSql
 			$error = "Failed to connect to MySQL: (" . $this->db->connect_errno . ") " . $this->db->connect_error;
 			throw new Exception($error);
 		}
-		$this->query("set names utf8;");
+		$this->query("set names utf8; ");
 	}
 	
 	function query($query)

@@ -8,12 +8,15 @@ require_once($localPath.'/include/class_com_sql.php'); // a mysql class.
 
 class isa_book_lend
 {
+    private $_Id = "";
     private $_BookId = "";
     private $_LendMan = "";
     private $_Valid = "";
 
     function __construct($data)
     {
+        if(isset($data["Id"]))
+            $this->setId($data["Id"]);
         if(isset($data["BookId"]))
             $this->setBookId($data["BookId"]);
         if(isset($data["LendMan"]))
@@ -36,11 +39,19 @@ class isa_book_lend
 		return $result;
 	}
 
+    function Agree()
+    {
+        $db = new cSql();
+        $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), ["Lend_id" => $this->_Id]);
+        return $result;
+    }
+
     function BackBook()
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->update("cc_web_lend", $this->getBackBook(), ["book_id" => $this->_BookId, "lend_valid" => "1"]);
+        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), ["book_id" => $this->_BookId, "lend_valid" => "1"]);
         return $result;
     }
 
@@ -48,7 +59,16 @@ class isa_book_lend
 	{
 		$db = new cSql();
 		$db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$sql = $this->getList($this->_BookId);
+		$sql = $this->getLend($this->_Id);
+		$result = $db->query($sql);
+		return $result;
+	}
+
+    function GetBookRecords()
+	{
+		$db = new cSql();
+		$db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$sql = $this->getBook($this->_BookId);
 		$result = $db->query($sql);
 		return $result;
 	}
@@ -58,6 +78,11 @@ class isa_book_lend
 		$this->_LendMan = $this->Format($name);
 	}
 	
+	function setId($Id)
+	{
+		$this->_Id = $this->Format($Id);
+	}
+
 	function setBookId($dbId)
 	{
 		$this->_BookId = $this->Format($dbId);
@@ -74,21 +99,32 @@ class isa_book_lend
 		$value = addslashes($value);
 		return $value;
 	}
-	
-	protected function getList($id)
+
+    protected function getData($where)
+    {
+        $sql = "select ld.*, `book_name`, `book_dbid` from `cc_web_lend` as ld
+        left join `cc_web_book` as bk
+        on ld.`book_id` = bk.`book_id` where ".$where."
+        order by `lend_date` desc limit 1";
+        return $sql;
+    }
+
+	protected function getBook($book_id)
 	{
-        $sql = "select ld.*, `book_name`, `book_dbid` from `cc_web_lend` as ld ";
-        $sql .= "left join `cc_web_book` as bk ";
-        $sql .= "on ld.`book_id` = bk.`book_id` ";
-        $sql .= "where `book_id` = '" . $id . "' and `book_valid` = 1";
-        $sql .= "order by `lend_date` desc limit 1";
+        $sql = $this->getData("`book_id` = '" . $book_id . "' and `book_valid` = 1");
 		return $sql;
 	}
 
-    protected function getBackBook()
+	protected function getLend($id)
+	{
+        $sql = $this->getData("`book_id` = '" . $id . "' and `book_valid` = 1");
+		return $sql;
+	}
+
+    protected function getUpdateStatus()
     {
         $data["book_id"] 	    =	$this->_BookId;
-        $data["lend_valid"] 	=	0;
+        $data["lend_valid"] 	=	$this->_Valid;
         $data["lend_back"] 	    = 	"now()";
 
         return $data;

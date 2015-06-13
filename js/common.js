@@ -15,7 +15,7 @@
 				FrameBox('lend.php?t=1&id=' + id, 300, 200);
 				break;
 			case 'agree':
-				FrameBox('lend.php?t=-2&id=' + id, 300, 200);
+				FrameBox('lend.php?t=2&id=' + id, 300, 200);
 				break;
             case 'read':
                 RequestAjax('ajax.php?r='+id, function(obj){
