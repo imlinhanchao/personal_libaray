@@ -2,7 +2,7 @@
 require_once("./verify.php");
 
 //page define 
-$_common['title'] = "管理后台 &laquo; 创软图书馆";
+$_common['title'] = "管理后台 &laquo; 我的图书";
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
 $_common['head'] = '<script type="text/javascript" src="./js/admin.js" ></script>';

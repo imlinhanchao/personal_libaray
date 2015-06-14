@@ -94,12 +94,21 @@ span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:cent
 #lend_cancel{background: #CCC;}
 
 /** List **/
-#bool_list{border-collapse:collapse;margin:1px auto;max-width:900px;}
-#bool_list th{color:#FFF;background:#232425;}
-#bool_list td, #bool_list th{border-bottom:1px solid #CCCBCA;padding:7px;text-align:center;}
-#bool_list tr.alt td {color:#000000;background-color:#EEECEB;}
-#bool_list .control_link{margin:5px;}
+#book_list{border-collapse:collapse;margin:1px auto;max-width:900px;}
+#book_list th{color:#FFF;background:#232425;}
+#book_list td, #book_list th{border-bottom:1px solid #CCCBCA;padding:7px;text-align:center;}
+#book_list tr.alt td {color:#000000;background-color:#EEECEB;}
+#book_list .control_link{margin:5px;}
+
 .th_number{width:8%;}
-.th_bookname{width:40%;}
+.th_bookname{width:auto;}
 .th_status{width:20%;}
-.th_manager{}
+.th_manager{width:30%;}
+.th_man{width:15%;}
+.th_date{width:15%;}
+
+#lend_list .th_number{width:8%;}
+#lend_list .th_bookname{width:auto;}
+#lend_list .th_status{width:10%;}
+#lend_list .th_man{width:20%;}
+#lend_list .th_manager{width:15%;}

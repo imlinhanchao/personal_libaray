@@ -66,7 +66,9 @@
                     }
                 });
 				break;
-			default: return true;
+            case 'null':
+                break;
+            default: return true;
 		}
 		return false;
 	});

@@ -13,7 +13,7 @@ class isa_book_lend
     private $_LendMan = "";
     private $_Valid = "";
 
-    function __construct($data)
+    function __construct($data = [])
     {
         if(isset($data["Id"]))
             $this->setId($data["Id"]);
@@ -72,7 +72,27 @@ class isa_book_lend
 		$result = $db->query($sql);
 		return $result;
 	}
-	
+
+    function GetAllRecords($Name)
+    {
+        $db = new cSql();
+        $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $sql = $this->getByName($Name);
+        $result = $db->query($sql);
+        return $result;
+    }
+
+    function translateLend($status)
+    {
+        switch($status)
+        {
+            case -2: return "拒绝了";
+            case -1: return "被订了";
+            case  0: return "已归还";
+            case  1: return "被借了";
+        }
+    }
+
 	function setLendMan($name)
 	{
 		$this->_LendMan = $this->Format($name);
@@ -105,7 +125,7 @@ class isa_book_lend
         $sql = "select ld.*, `book_name`, `book_dbid` from `cc_web_lend` as ld
         left join `cc_web_book` as bk
         on ld.`book_id` = bk.`book_id` where ".$where."
-        order by `lend_date` desc limit 1";
+        order by `lend_date` desc";
         return $sql;
     }
 
@@ -121,11 +141,18 @@ class isa_book_lend
 		return $sql;
 	}
 
+    protected function getByName($name)
+    {
+        $sql = $this->getData("`book_name` like '%" . $name . "%' and `book_valid` = 1 ");
+        return $sql;
+    }
+
     protected function getUpdateStatus()
     {
         $data["Lend_id"] 	    =	$this->_Id;
         $data["lend_valid"] 	=	$this->_Valid;
-        $data["lend_back"] 	    = 	"now()";
+        if($this->_Valid == 0)
+            $data["lend_back"] 	    = 	"now()";
 
         return $data;
     }
@@ -139,16 +166,5 @@ class isa_book_lend
 
         return $data;
 	}
-
-	protected function getByName($name)
-	{
-		$sql = "select ld.*, `book_name`, `book_dbid` from `cc_web_lend` as ld ";
-        $sql .= "left join `cc_web_book` as bk ";
-        $sql .= "on ld.`book_id` = bk.`book_id` ";
-        $sql .= "where `book_name` = '" . $name . "' and `book_valid` = 1 ";
-        $sql .= "order by `lend_date` desc ";
-		return $sql;
-	}
-
 }
 ?>

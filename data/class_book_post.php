@@ -137,6 +137,7 @@ class isa_book_post
     {
         switch($status)
         {
+            case -2: return "拒绝了";
             case -1: return "被订了";
             case  0: return "还在家";
             case  1: return "被借了";
