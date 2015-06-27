@@ -65,3 +65,22 @@ INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid
 VALUES  ('ReadCtrl', '1', now(), 1);
 
 
+DELIMITER //
+
+CREATE PROCEDURE SetBase (
+  IN KEYNAME VARCHAR(50),
+  IN KEYVALUE VARCHAR(200)
+)
+  BEGIN
+    BEGIN
+      IF EXISTS(SELECT * FROM `cc_web_base` WHERE `base_name` = KEYNAME) THEN
+        UPDATE `cc_web_base` SET `base_value` = KEYVALUE, `base_valid` = 1
+        WHERE `base_name` = KEYNAME;
+      ELSE
+        INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid`)
+        VALUES(KEYNAME, KEYVALUE, NOW(), 1);
+      END IF;
+    END;
+  END//
+
+DELIMITER ;

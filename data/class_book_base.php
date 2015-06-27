@@ -33,16 +33,7 @@ class isa_book_base
 
     static protected function Write($key, $value)
     {
-        $sql = "IF NOT EXISTS SELECT * FROM `cc_web_base` WHERE `base_name` = '".$key."'
-                BEGIN
-                    INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid`)
-                    VALUES('".$key."', '".$value."', NOW(), 1) ;
-                END
-                ELSE
-                BEGIN
-                    UPDATE `cc_web_base` SET `base_value` = '".$value."', `base_valid` = 1
-                    WHERE `base_name` = '".$key."' ;
-                END";
+        $sql = "CALL `SetBase`('".$key."', '".$value."');";
         return $sql;
     }
 }
