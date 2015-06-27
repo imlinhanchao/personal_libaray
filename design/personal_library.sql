@@ -37,3 +37,31 @@ CREATE TABLE IF NOT EXISTS `cc_web_lend` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
+-- --------------------------------------------------------
+-- base setting table
+--
+-- `cc_web_base`
+--
+
+CREATE TABLE IF NOT EXISTS `cc_web_base` (
+  `base_id` int(11) NOT NULL AUTO_INCREMENT,
+  `base_name` varchar(50) DEFAULT NULL,
+  `base_value` varchar(200) DEFAULT NULL,
+  `base_update` datetime DEFAULT NULL,
+  `base_valid` int(11) DEFAULT '1',
+  PRIMARY KEY (`base_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid`)
+VALUES  ('WebName', '我的图书馆', now(), 1);
+
+INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid`)
+VALUES  ('Logo', './upload/logo.png', now(), 1);
+
+INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid`)
+VALUES  ('login', './upload/login.png', now(), 1);
+
+INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_update`, `base_valid`)
+VALUES  ('ReadCtrl', '1', now(), 1);
+
+
