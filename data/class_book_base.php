@@ -13,7 +13,9 @@ class isa_book_base
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->query(isa_book_base::Read($key));
-        return $result;
+        if($result->num_rows > 0)
+            return $result->fetch_assoc()["base_value"];
+        return "";
     }
 
     static function Set($key, $value)

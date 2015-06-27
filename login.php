@@ -5,13 +5,17 @@ if (isset($_SESSION['sess_user'])){
 	header ("Location:".LOCALHOST."/admin/index.php") ;    //重新定向到其他页面
 	exit(0);
 }
-                
+
+$_common['localPath'] = ".";
+require($_common['localPath'].'/data/class_book_base.php');
+
 $username = isset($_POST['username']) ? $_POST['username'] : null;    //获取参数
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 if(null != $username && null != $password)
 {
 	//验证管理员名称和密码是否正确,这里采用直接验证,没有连接数据库
-	if ($username=="hancel" && $password=="`1qw23"){
+	if ($username == isa_book_base::Get("adminUser") &&
+        $password == isa_book_base::Get("adminPwd")){
 		$_SESSION['sess_user'] = $username ;
 		header ("Location:".LOCALHOST."/admin/index.php") ;    //登录成功重定向到管理页面
 	}
@@ -25,7 +29,7 @@ if(null != $username && null != $password)
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <base href="<?php echo LOCALHOST; ?>/"/>
-  <title> Hancel 's Library | 只为探索和好奇... </title>
+  <title> <?=isa_book_base::Get("WebName")?> | 只为探索和好奇... </title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link href="./css/common.css" rel="stylesheet" type="text/css" />
   <link href="./admin/style.css" rel="stylesheet" type="text/css" />

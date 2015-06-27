@@ -2,9 +2,12 @@
 require_once("./verify.php");
 
 //page define 
-$_common['title'] = "借阅管理 &laquo; 我的图书";
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
+
+require($_common['localPath'] . '/data/class_book_base.php');
+
+$_common['title'] = "借阅管理 &laquo; ".isa_book_base::Get("WebName");
 $_common['head'] =
 '<script type="text/javascript" src="./js/admin.js" ></script>
 <script type="text/javascript" src="./js/jquery.fancybox.pack.js" ></script>

@@ -2,9 +2,11 @@
 session_start();
 require_once("./config.php");
 
-$_common['title'] = "我的图书";
-$_common['page'] = "home";
 $_common['localPath'] = '.';
+$_common['page'] = "home";
+
+require($_common['localPath'] . '/data/class_book_base.php');
+$_common['title'] = isa_book_base::Get("WebName");
 
 $_common['head'] =
 '<script type="text/javascript" src="./js/jquery.fancybox.pack.js"></script>
@@ -27,6 +29,7 @@ if (isset ($_SESSION['sess_user']))
 	$isAdmin = true;
 }
 
+$ReadOn = isa_book_base::Get("ReadCtrl") == 1;
 $ReadLink = "";
 $ReadLinkClose = "";
 
@@ -58,9 +61,11 @@ $ReadLinkClose = "";
 				</div>
                 <div class="book_status" id="book_<?=$row["book_id"]?>">
                     <span class="sp_btn">這本書</span>
+                    <?php if($ReadOn){ ?>
 					<?=$ReadLink?>
 						<span class="sp_btn book_isRead" data-status="<?=$row['book_isRead']?>"><?=$isRead?></span>
 					<?=$ReadLinkClose?>
+                    <?php } ?>
                     <a class="control_link" href="#order_<?=$row["book_id"]?>" title="想借這本書？" data-status="<?=$row['isLend']?>">
                         <span class="sp_btn book_isLend" data-status="<?=$row['isLend']?>"><?=$isLend?></span>
                     </a>

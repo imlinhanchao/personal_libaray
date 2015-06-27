@@ -2,7 +2,7 @@
 require_once("./verify.php");
 
 //page define 
-$_common['title'] = "管理后台 &laquo; 创软图书馆";
+$_common['title'] = "添加图书";
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
 // get book info

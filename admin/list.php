@@ -1,10 +1,13 @@
 <?php 
 require_once("./verify.php");
 
-//page define 
-$_common['title'] = "书籍管理 &laquo; 我的图书";
+//page define
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
+
+require($_common['localPath'] . '/data/class_book_base.php');
+
+$_common['title'] = "书籍管理 &laquo; ".isa_book_base::Get("WebName");
 $_common['head'] =
 '<script type="text/javascript" src="./js/admin.js" ></script>
 <script type="text/javascript" src="./js/jquery.fancybox.pack.js" ></script>
@@ -17,6 +20,8 @@ require($_common['localPath'] . '/data/class_book_post.php');
 $search = "";
 if(isset($_GET['s']))
 	$search = $_GET['s'];
+
+$ReadOn = isa_book_base::Get("ReadCtrl") == 1;
 
 ?>
 <form action="#" methon="post">
@@ -62,7 +67,9 @@ if(isset($_GET['s']))
                 <td><?=$i?></td><td><?=$row["book_name"]?></td>
                 <td><?=$status?></td>
                 <td>
+                    <?php if($ReadOn){ ?>
                     <a class="control_link" href="#<?=$read_action?>_<?=$read_id?>"><?=$read_word?></a>
+                    <?php } ?>
                     <a class="control_link" href="#<?=$lend_action?>_<?=$lend_id?>"><?=$lend_word?></a>
                     <a class="control_link" href="#del_<?=$row['book_id']?>">删除</a>
                 </td>
