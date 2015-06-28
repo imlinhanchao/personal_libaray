@@ -4,9 +4,7 @@ body{margin:0 auto;background-color: #fafbfc;}
 body.dialog{width:auto;}
 #header{width:100%;background-color: #232425;*height:115px;}
 #logo{display:inline-block;*float:left;color: #fafbfc;height: 100px;background: url(../images/logo.png) no-repeat center;width: 270px;}
-#logo h1{
-    display: none;
-}
+#logo h1{display: none;}
 #donate{float:right;background-color:#DEDFE1;height:40px;width:120px;margin-top:60px;}
 a#donate:hover{text-decoration:none;}
 #donate p{margin: 0 0 0 40px;text-align:center;line-height:40px;}
@@ -59,32 +57,35 @@ p.submit label{font-size:0.8em;}
 .nav_item a{padding-left:40px;display:block;line-height:40px;}
 
 /** Form **/
-label.text{display:block;float:left;width:120px;height:40px;background-color: #232425;color:#fff;line-height:40px;text-align:center;}
-input.text{border:none;width:330px;height:40px;line-height:20px;background-color:#DEDFE1;margin:0; padding: 0 0 0 10px;float:left;}
+label.text{display:block;float:left;height:40px;background-color: #232425;color:#fff;line-height:40px;text-align:center;padding: 0 15px;margin: 5px 0;}
+input.text{border:none;width: 200px;height:40px;line-height:20px;background-color:#DEDFE1;margin: 5px 0; padding: 0 0 0 10px;float:left;}
 span.text_tail{float:left;height:40px;line-height:40px;background-color:#DEDFE1;padding:0 5px;}
-.iconbtn{width:40px;height:40px;float:left;border:none;}
+.iconbtn{width:40px;height:40px;float:left;border:none;margin: 5px 0;}
 .iconbtn:hover{cursor:pointer;}
 .iconbtn:active{cursor:pointer;width:38px;height:38px;margin:1px;}
-.btn{width: 80px;background:#000;border:none;color:#fff;height: 35px;float: right;margin: 0 10px;}
+.btn{background:#000;border:none;color:#fff;height: 35px;margin: 5px 0;padding: 0 15px;}
 .btn:hover{cursor:pointer;}
-.btn:active{width:78px;height:33px;margin:1px 11px;}
+.btn:active{padding: 0 14px;height:33px;margin: 6px 1px;}
 
 /** Post **/
-#post{}
+#post{margin:10px;}
 #post ul{margin:10px 0;padding:0;}
 #post li.form_item{clear:left;height:40px;margin:10px 0;}
-span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:center;background-color:#DEDFE1;}
+span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:center;background-color:#DEDFE1;margin: 5px 0;}
+.postbook label.text{width:70px;}
+.postbook input.text{width:330px;}
 
 /** Edit **/
 .post_content{width:700px;margin:0 auto;}
 .thumb{float:left;}
 .thumb .pic{width: 250px;}
-.info{margin-left: 300px;width: 400px;}
-.info label.text{margin-left:5px;width:60px;}
-.info input.text#count{width:60px;}
-.info input.text#people{width:100px;}
-.info .title{font-size:200%;font-weight:normal;width:450px;}
-.info .submit{text-align:right;}
+.form{}
+.form label.text{margin: 5px 0;}
+.form input.text#count{width:60px;}
+.form input.text#people{width:100px;}
+.form .title{font-size:200%;font-weight:normal;width:450px;}
+.form .submit{text-align: left;clear: both;}
+.form p{clear:both;}
 
 /** Lend **/
 .txt_noBorder{border:0;padding: 5px; line-height: 25px;margin-left: -5px;}
@@ -112,3 +113,6 @@ span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:cent
 #lend_list .th_status{width:10%;}
 #lend_list .th_man{width:20%;}
 #lend_list .th_manager{width:15%;}
+
+/** Base **/
+#base_ctrl{margin:10px;}

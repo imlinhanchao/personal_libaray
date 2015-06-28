@@ -29,11 +29,11 @@ require($_common['localPath'] . '/content/header.php');
 					<input type="text" name="isbn" id="isbn" class="text"/>
 					<button id="postisbn" class="iconbtn newbook"><span class="hide">添加</span></button>
 				</li>
-				<li class="form_item">
+				<!--<li class="form_item">
 					<label for="search" class="text">搜索</label>
 					<input type="text" name="search" id="search" class="text"/>
 					<button id="postisbn" class="iconbtn search"><span class="hide">添加</span></button>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<div id="article">

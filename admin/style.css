@@ -3,7 +3,7 @@
 #login #logo{display:block;width: 400px;height: 100px;background:url(../images/login.png) no-repeat left top;margin:0 auto;}
 #logo h1{display:none;}
 .login_form .user, .login_form .password{width:40px;height:40px;float:left;}
-.login_form p{width:386px;margin:30px auto;line-height:40px;height:40px;}
+.login_form p{width:386px;margin:30px auto;line-height:40px;height:40px;text-align: right;}
 p.submit label{font-size:0.8em;}
 
 /** header **/
@@ -36,6 +36,6 @@ label.text{display:block;float:left;width:120px;height:40px;background-color:#00
 input.text{border:none;width:330px;height:40px;line-height:20px;background-color:#DEDFE1;margin:0; padding: 0 0 0 10px;float:left;}
 span.text_tail{float:left;height:40px;line-height:40px;background-color:#DEDFE1;padding:0 5px;}
 .iconbtn{width:40px;height:40px;float:left;border:none;}
-.btn{width: 80px;background:#000;border:none;color:#fff;height: 35px;float: right;margin: 0 10px;}
+.btn{width: 80px;background:#000;border:none;color:#fff;height: 35px;margin: 0 10px;}
 .btn:hover{cursor:pointer;}
 .btn:active{width:78px;height:33px;margin:1px 11px;}
