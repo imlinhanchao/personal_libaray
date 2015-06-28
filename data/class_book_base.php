@@ -3,8 +3,8 @@ if(isset($_common['localPath']))
 	$localPath = $_common['localPath'];
 else
     $localPath = "..";
-require_once($localPath.'\config.php');
-require_once($localPath.'\include\class_com_sql.php'); // a mysql class.
+require_once($localPath.'/config.php');
+require_once($localPath.'/include/class_com_sql.php'); // a mysql class.
 
 class isa_book_base
 {

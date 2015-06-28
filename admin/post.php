@@ -25,7 +25,7 @@ if(isset($_POST['bookname']))
     try
     {
         $book->Insert();
-        $_common['script'] = "<script>parent.location.reload();</script>";
+        $_common['script'] = "parent.location.reload();";
     }
     catch (Exception $e) {
         $_warning['t'] = "error";
@@ -34,26 +34,26 @@ if(isset($_POST['bookname']))
     }
 
 }
-
-$db_id = "";
-$isbn = "";
-if(isset($_GET["id"]))
-	$db_id = $_GET["id"];
-if(isset($_GET["isbn"]))
-	$isbn = $_GET["isbn"];
-	
-$dbInfo = [];
-if($db_id != "")
-	$dbInfo = $BookInfo->getById($db_id);
-else if($isbn != "")
-	$dbInfo = $BookInfo->getByISBN($isbn);
-if(!isset($dbInfo["id"]))
+else
 {
-	echo "no found..".$db_id;
-    var_dump($dbInfo);
-	exit(0);
-}
+    $db_id = "";
+    $isbn = "";
+    if (isset($_GET["id"]))
+        $db_id = $_GET["id"];
+    if (isset($_GET["isbn"]))
+        $isbn = $_GET["isbn"];
 
+    $dbInfo = [];
+    if ($db_id != "")
+        $dbInfo = $BookInfo->getById($db_id);
+    else if ($isbn != "")
+        $dbInfo = $BookInfo->getByISBN($isbn);
+    if (!isset($dbInfo["id"])) {
+        echo "no found.." . $db_id;
+        var_dump($dbInfo);
+        exit(0);
+    }
+}
 require($_common['localPath'] . '/content/headlite.php');
 ?>
  <body class="dialog">

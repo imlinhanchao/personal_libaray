@@ -55,9 +55,9 @@ else if(isset($_GET["id"]))
 
     switch($lend_type)
     {
-        case -1: $lend_button = "订了";
-        case  1: $lend_button = "借出";
-        case  2: $lend_button = "审批";
+        case -1: $lend_button = "订了"; break;
+        case  1: $lend_button = "借出"; break;
+        case  2: $lend_button = "审批"; break;
     }
 
     if($lend_type != 2)

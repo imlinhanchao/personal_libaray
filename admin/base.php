@@ -21,15 +21,18 @@ if (isset($_POST["base_oldpwd"]) &&
     "" != $_POST["base_newpwd"])
 {
     isa_book_base::Set("adminUser", $_POST["base_user"]);
-    isa_book_base::Set("adminPwd", isset($_POST["base_newpwd"]));
+    if(isset($_POST["base_newpwd"]) && "" == $_POST["base_newpwd"])
+    {
+        $_common['message'] = "新密码不能为空！";
+    }
+    else
+    {
+        isa_book_base::Set("adminPwd", isset($_POST["base_newpwd"]));
+    }
 }
 else if(isset($_POST["base_oldpwd"]) && $_POST["base_oldpwd"] != "")
 {
     $_common['message'] = "原密码错误！";
-}
-else if(isset($_POST["base_newpwd"]) && "" == $_POST["base_newpwd"])
-{
-    $_common['message'] = "新密码不能为空！";
 }
 
 $_common['title'] = "系统设置 &laquo; ".isa_book_base::Get("WebName");

@@ -42,7 +42,7 @@ $ReadOn = isa_book_base::Get("ReadCtrl") == 1;
             $alt = "";
             if(1 == $i % 2) $alt = ' class="alt"';
             $status = $book->translateLend($row['isLend']);
-            $status .= '/' . $book->translateStatus($row['book_isRead']);
+            if($ReadOn) $status .= '/' . $book->translateStatus($row['book_isRead']);
 
             $read_action = "read";
             $read_word = "借出";

@@ -10,7 +10,8 @@ class cSql
 			$error = "Failed to connect to MySQL: (" . $this->db->connect_errno . ") " . $this->db->connect_error;
 			throw new Exception($error);
 		}
-		$this->query("set names utf8; ");
+		$this->query("set character set 'utf8';");
+		$this->query("set names utf8;");
 	}
 	
 	function query($query)

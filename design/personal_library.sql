@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `cc_web_book` (
   `book_isRead` int DEFAULT '0',
   `book_valid` int(11) DEFAULT '1',
   PRIMARY KEY (`book_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 -- lend list table
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `cc_web_lend` (
   `lend_back` datetime DEFAULT NULL,
   `lend_valid` int(11) DEFAULT '1',
   PRIMARY KEY (`lend_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `cc_web_base` (
   `base_update` datetime DEFAULT NULL,
   `base_valid` int(11) DEFAULT '1',
   PRIMARY KEY (`base_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1 ;
 
 INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_desc`, `base_update`, `base_valid`)
 VALUES  ('WebName', '我的图书馆', '网站名称', now(), 1);
@@ -66,18 +66,18 @@ INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_desc`, `base_update`
 VALUES  ('ReadCtrl', '1', '开启/关闭阅读功能', now(), 1);
 
 INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_desc`, `base_update`, `base_valid`)
-VALUES  ('adminUser', 'admin', '开启/关闭阅读功能', now(), 1);
+VALUES  ('adminUser', 'admin', '管理员账号', now(), 1);
 
 INSERT INTO `cc_web_base` (`base_name`, `base_value`, `base_desc`, `base_update`, `base_valid`)
-VALUES  ('adminPwd', '112358', '开启/关闭阅读功能', now(), 1);
+VALUES  ('adminPwd', '112358', '管理员密码', now(), 1);
 
 
 -- 创建保存基本配置存储过程
 DELIMITER //
 
 CREATE PROCEDURE SetBase (
-  IN KEYNAME VARCHAR(50),
-  IN KEYVALUE VARCHAR(200)
+  IN KEYNAME VARCHAR(50) charset utf8,
+  IN KEYVALUE VARCHAR(200) charset utf8
 )
   BEGIN
     BEGIN
