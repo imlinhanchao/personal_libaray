@@ -50,7 +50,7 @@ $ReadLinkClose = "";
                 $ReadLink = '<a class="control_link" href="#read_'.$row["book_id"].'">';
                 $ReadLinkClose = '</a>';
             }?>
-			<li class="book_item">
+			<li class="book_item" id="book_<?=$row["book_id"]?>">
 				<a href="http://book.douban.com/subject/<?=$row["book_dbid"]?>/" class="book_img" rel="nofollow" target="_blank"><img src="<?=$row['book_img']?>" alt="<?=$row['book_name']?>"/></a>
 				<div class="book_desc">
 					<h2 class="t_over title"><a href="http://book.douban.com/subject/<?=$row["book_dbid"]?>/" title="<?=$row['book_name']?>" target="_blank"><?=$row['book_name']?></a></h2>
@@ -59,7 +59,7 @@ $ReadLinkClose = "";
 					<p>页数: <?=$row['book_pages']?></p>
 					<p>ISBN: <?=$row['book_ISBN']?></p>
 				</div>
-                <div class="book_status" id="book_<?=$row["book_id"]?>">
+                <div class="book_status" id="status_<?=$row["book_id"]?>">
                     <span class="sp_btn">這本書</span>
                     <?php if($ReadOn){ ?>
 					<?=$ReadLink?>
