@@ -28,8 +28,8 @@ if(isset($_GET['s']))
 			<tr>
 				<th class="th_number">序号</th>
 				<th class="th_bookname">书名</th>
-				<th class="th_man">借阅者</th>
 				<th class="th_status">状态</th>
+                <th class="th_man">借阅者</th>
 				<th class="th_date">借出日期</th>
 				<th class="th_date">归还日期</th>
 				<th class="th_manager">管理</th>

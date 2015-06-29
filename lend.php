@@ -88,11 +88,11 @@ require($_common['localPath'] . '/content/header.php');
 	<form action="lend.php" method="post">
 		<p>
 			<label for="lend_man" class="txt_title">我是</label>
-			<input type="text" name="lend_man" class="txt_noBorder" id="lend_man" maxlength="10" value="<?=$lend_Man?>" />
+			<input type="text" name="lend_man" class="txt_noBorder v_noempty" id="lend_man" maxlength="10" value="<?=$lend_Man?>" />
 		</p>
 		<p>
 			<label for="lend_book" class="txt_title">想借</label>
-			<input type="text" readonly name="lend_book" class="txt_noBorder" id="lend_book" maxlength="50" value="<?=$lend_book?>" />
+			<input type="text" readonly name="lend_book" class="txt_noBorder v_noempty" id="lend_book" maxlength="50" value="<?=$lend_book?>" />
 			<input type="hidden" name="lend_id" id="lend_id" value="<?=$lend_id?>" />
 			<input type="hidden" name="lend_type" id="lend_type" value="<?=$lend_type?>" />
         </p>

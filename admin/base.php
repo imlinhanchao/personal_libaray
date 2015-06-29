@@ -27,7 +27,7 @@ if (isset($_POST["base_oldpwd"]) &&
     }
     else
     {
-        isa_book_base::Set("adminPwd", isset($_POST["base_newpwd"]));
+        isa_book_base::Set("adminPwd", $_POST["base_newpwd"]);
     }
 }
 else if(isset($_POST["base_oldpwd"]) && $_POST["base_oldpwd"] != "")
@@ -57,7 +57,7 @@ $ReadOn = isa_book_base::Get("ReadCtrl") == 1;
         </h2>
         <p>
             <label for="base_name" class="text">网站名称：</label>
-            <input type="text" maxlength="25" name="base_name" id="base_name" value="<?=isa_book_base::Get("WebName")?>" class="text"/>
+            <input type="text" maxlength="25" name="base_name" id="base_name" value="<?=isa_book_base::Get("WebName")?>" class="text v_noempty"/>
         </p>
         <p>
             <label for="base_read" class="text">开启阅读：</label>

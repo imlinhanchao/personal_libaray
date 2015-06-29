@@ -23,4 +23,8 @@ a, area{blr:expression(this.onFocus=this.blur());}
 .hide{display:none;}
 .t_over{-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 .sprite{background:url(../images/sprite.png) no-repeat;}
+.balloon{position: absolute;background-color: #FFF;border: 1px solid #a4acb5;padding: 5px 6px;border-radius: 4px;}
+.balloon_top{width: 13px;height: 7px;position: absolute;background: url(../images/balloon_up.gif) no-repeat;top: -7px;}
+.balloon_msg{padding-left: 25px;background: url(../images/balloon_info.jpg) no-repeat left;line-height: 20px;}
+.balloon_txt{}
 /**Public End **/

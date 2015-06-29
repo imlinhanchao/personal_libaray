@@ -12,7 +12,7 @@ class isa_book_base
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->query(isa_book_base::Read($key));
+        $result = $db->query(isa_book_base::Read(isa_book_base::Format($key)));
         if($result->num_rows > 0)
             return $result->fetch_assoc()["base_value"];
         return "";
@@ -22,7 +22,7 @@ class isa_book_base
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->query(isa_book_base::Write($key, $value));
+        $result = $db->query(isa_book_base::Write(isa_book_base::Format($key), isa_book_base::Format($value)));
         return $result;
     }
 
@@ -38,5 +38,13 @@ class isa_book_base
         $sql = "CALL `SetBase`('".$key."', '".$value."');";
         return $sql;
     }
+
+    static protected function Format($value)
+    {
+        $value = htmlspecialchars($value, ENT_QUOTES);
+        $value = addslashes($value);
+        return $value;
+    }
+
 }
 ?>
