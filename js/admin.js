@@ -16,4 +16,9 @@
 		FrameBox('./admin/post.php?isbn=' + isbn);
 		return false;
 	});
+	$(".searchItem").click(function(){
+		var id = this.dataset.id;
+		FrameBox('./admin/post.php?id=' + id);
+		return false;
+	});
 });

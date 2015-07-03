@@ -65,20 +65,20 @@ require($_common['localPath'] . '/content/headlite.php');
 				<h2 class="t_over title">
 				<?=$dbInfo["title"]; ?>
 				</h2>
-				<p>作者:  <?=$dbInfo['author'][0] ?></p>
+				<p>作者:  <?=count($dbInfo["author"]) > 0 ? $dbInfo['author'][0] : "无" ?></p>
                 <p>出版社: <?=$dbInfo['publisher'] ?></p>
 				<p>页数: <?=$dbInfo['pages'] ?></p>
 				<p>出版日期: <?=$dbInfo['pubdate'] ?></p>
 				<p>ISBN: <?=$dbInfo['isbn13'] ?></p>
 				<p class="hide">
-					<input type="hidden" name="dbid" value="<?=$dbInfo['id']; ?>"/>
-					<input type="hidden" name="bookimg" value="<?=$dbInfo['images']['large']; ?>"/>
-					<input type="hidden" name="bookname" value="<?=$dbInfo["title"]; ?>"/>
-					<input type="hidden" name="bookauthor" value="<?=$dbInfo["author"][0]; ?>"/>
-					<input type="hidden" name="bookpublisher" value="<?=$dbInfo["publisher"]; ?>"/>
-					<input type="hidden" name="bookpages" value="<?=$dbInfo["pages"]; ?>"/>
-					<input type="hidden" name="bookisbn" value="<?=$dbInfo["isbn13"]; ?>"/>
-					<input type="hidden" name="bookpubdate" value="<?=$dbInfo["pubdate"]; ?>"/>
+					<input type="hidden" name="dbid" value="<?=$dbInfo['id']?>"/>
+					<input type="hidden" name="bookimg" value="<?=$dbInfo['images']['large']?>"/>
+					<input type="hidden" name="bookname" value="<?=$dbInfo["title"]?>"/>
+					<input type="hidden" name="bookauthor" value="<?=count($dbInfo["author"]) > 0 ? $dbInfo['author'][0] : "无"?>"/>
+					<input type="hidden" name="bookpublisher" value="<?=$dbInfo["publisher"]?>"/>
+					<input type="hidden" name="bookpages" value="<?=$dbInfo["pages"]?>"/>
+					<input type="hidden" name="bookisbn" value="<?=$dbInfo["isbn13"]?>"/>
+					<input type="hidden" name="bookpubdate" value="<?=$dbInfo["pubdate"]?>"/>
 				</p>
 				<p class="submit"><input type="submit" value="添加" class="btn"/></p>
 			</div>

@@ -20,6 +20,15 @@ class Book_Api
 		$array = json_decode($json, true);
 		return $array;
 	}
+
+    function getSearch($s)
+    {
+        $json = @file_get_contents("https://api.douban.com/v2/book/search?q=".urlencode($s));
+        if($json == null) $json = '{"count": 0,"start": 0,"total": 0,"books": []}';
+        // echo $json;
+        $array = json_decode($json, true);
+        return $array;
+    }
 }
 $BookInfo = new Book_Api();
 
@@ -29,14 +38,24 @@ if(isset($_GET["dbid"]))
 {
 	$id = $_GET["dbid"];
 	$array = $BookInfo->getById($id);
+    $dump = true;
 }
 
 if(isset($_GET["dbisbn"])) 
 {
 	$isbn = $_GET["dbisbn"];
 	$array = $BookInfo->getByISBN($isbn);
+    $dump = true;
 }
-if(isset($_GET["dbisbn"]) || isset($_GET["dbid"]))
+
+if(isset($_GET["dbs"]))
+{
+	$s = $_GET["dbs"];
+	$array = $BookInfo->getSearch($s);
+    $dump = true;
+}
+
+if(isset($dump))
 	var_dump($array);
 
 ?>

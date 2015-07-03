@@ -70,15 +70,16 @@ span.text_tail{float:left;height:40px;line-height:40px;background-color:#DEDFE1;
 /** Post **/
 #post{margin:10px;}
 #post ul{margin:10px 0;padding:0;}
-#post li.form_item{clear:left;height:40px;margin:10px 0;}
+#post li.form_item{clear:left;height:40px;margin: 10px;width: 410px;display: inline-block;}
 span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:center;background-color:#DEDFE1;margin: 5px 0;}
 .postbook label.text{width:70px;}
-.postbook input.text{width:330px;}
+.postbook input.text{width: 260px;}
 
 /** Edit **/
 .post_content{width:700px;margin:0 auto;}
 .thumb{float:left;}
 .thumb .pic{width: 250px;}
+.thumb .min_pic{width: 105px;}
 .info{margin-left:280px;}
 .form{}
 .form label.text{margin: 5px 0;}
@@ -87,6 +88,13 @@ span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:cent
 .form .title{font-size:200%;font-weight:normal;width:450px;clear: both;}
 .form .submit{text-align: left;clear: both;}
 .form p{clear:both; height: 40px; }
+
+.subject_item{width: 550px;display: inline-block;margin: 5px 0;}
+.subject_item .info{margin-left:120px;}
+.subject_item h2{margin:0;width: 350px;display: inline-block;line-height: 40px;}
+.subject_item .iconbtn{display: inline-block;float: none;margin: 0;}
+.subject_item p{margin: 0;line-height: 2;}
+#article{padding: 0 10px;}
 
 /** Lend **/
 .txt_noBorder{border:0;padding: 5px; line-height: 25px;margin-left: -5px;}
