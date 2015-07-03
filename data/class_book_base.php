@@ -14,7 +14,10 @@ class isa_book_base
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->query(isa_book_base::Read(isa_book_base::Format($key)));
         if($result->num_rows > 0)
-            return $result->fetch_assoc()["base_value"];
+        {
+            $data = $result->fetch_assoc();
+            return $data["base_value"];
+        }
         return "";
     }
 

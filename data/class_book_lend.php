@@ -43,7 +43,7 @@ class isa_book_lend
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), ["Lend_id" => $this->_Id]);
+        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), array("Lend_id" => $this->_Id));
         return $result;
     }
 
@@ -51,7 +51,7 @@ class isa_book_lend
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), ["book_id" => $this->_BookId, "lend_valid" => "1"]);
+        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), array("book_id" => $this->_BookId, "lend_valid" => "1"));
         return $result;
     }
 
