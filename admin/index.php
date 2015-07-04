@@ -7,6 +7,7 @@ $_common['localPath'] = '..';
 
 require($_common['localPath'] . '/data/class_book_base.php');
 require($_common['localPath'] . '/include/class_com_bookapi.php');
+require($_common['localPath'] . '/data/class_book_post.php');
 
 $_common['title'] = "管理后台 &laquo; ".isa_book_base::Get("WebName");
 $_common['head'] = '<script type="text/javascript" src="./js/admin.js" ></script>';
@@ -39,6 +40,35 @@ require($_common['localPath'] . '/content/header.php');
 		</div>
         <?php if(isset($_GET["s"])){ ?>
 		<div id="article">
+            <?php
+                $book = new isa_book_post();
+                $bookList = $book->GetBooks(urldecode($_GET["s"]));
+                if($bookList->num_rows > 0) {
+            ?>
+			<ul class="subject_list">
+                <?php
+                for($i = 0; $i < $bookList->num_rows; $i++)
+                {
+                    $row = $bookList->fetch_assoc();
+                    ?>
+                    <li class="subject_item">
+                        <div class="thumb">
+                            <img src="<?=$row["book_img"]?>" alt="<?=$row["book_name"]?>" class="min_pic"/>
+                        </div>
+                        <div class="info">
+                            <h2 class="t_over" title="<?=$row["book_name"]?>">
+                                <a target="_blank" href="http://book.douban.com/subject/<?=$row["book_dbid"]?>/"><?=$row["book_name"]?></a>
+                            </h2>
+                            <p>作者:  <?=$row['book_author']?></p>
+                            <p>出版社: <?=$row['book_publisher']?></p>
+                            <p>ISBN: <?=$row['book_ISBN']?></p>
+                        </div>
+
+                    </li>
+            <?php } ?>
+            </ul>
+            <span class="notice_book">以上为已添加图书的搜索结果 ▲</span>
+            <?php } ?>
             <h1><?=$_GET["s"]?> 的搜索结果</h1>
 			<ul class="subject_list">
                 <?php

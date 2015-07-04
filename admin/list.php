@@ -35,7 +35,7 @@ $ReadOn = isa_book_base::Get("ReadCtrl") == 1;
 			</tr>
 <?php
         $book = new isa_book_post();
-        $bookList = $book->GetBooks($search);
+        $bookList = $book->GetBooks(urldecode($search));
         for($i = 0; $i < $bookList->num_rows; $i++)
         {
             $row = $bookList->fetch_assoc();
