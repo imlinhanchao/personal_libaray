@@ -13,7 +13,7 @@ class isa_book_lend
     private $_LendMan = "";
     private $_Valid = "";
 
-    function __construct($data = [])
+    function __construct($data = array())
     {
         if(isset($data["Id"]))
             $this->setId($data["Id"]);
@@ -51,7 +51,7 @@ class isa_book_lend
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), array("book_id" => $this->_BookId, "lend_valid" => "1"));
+        $result = $db->update("cc_web_lend", $this->getUpdateStatus(), array("Lend_id" => $this->_Id, "lend_valid" => "1"));
         return $result;
     }
 
@@ -149,11 +149,10 @@ class isa_book_lend
 
     protected function getUpdateStatus()
     {
-        $data["Lend_id"] 	    =	$this->_Id;
+        //$data["Lend_id"] 	    =	$this->_Id;
         $data["lend_valid"] 	=	$this->_Valid;
         if($this->_Valid == 0)
             $data["lend_back"] 	    = 	"now()";
-
         return $data;
     }
 
