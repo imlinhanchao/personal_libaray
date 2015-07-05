@@ -5,9 +5,9 @@ require_once("./verify.php");
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
 
-require($_common['localPath'] . '/data/class_book_base.php');
-require($_common['localPath'] . '/include/class_com_bookapi.php');
-require($_common['localPath'] . '/data/class_book_post.php');
+require_once($_common['localPath'] . '/data/class_book_base.php');
+require_once($_common['localPath'] . '/include/class_com_bookapi.php');
+require_once($_common['localPath'] . '/data/class_book_post.php');
 
 $_common['title'] = "管理后台 &laquo; ".isa_book_base::Get("WebName");
 $_common['head'] = '<script type="text/javascript" src="./js/admin.js" ></script>';
@@ -15,10 +15,27 @@ $_common['head'] = $_common['head'] . '<script type="text/javascript" src="./js/
 $_common['head'] = $_common['head'] . '<link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />';
 $_common['head'] = $_common['head'] . '<style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
 
-require($_common['localPath'] . '/content/header.php');
+require_once($_common['localPath'] . '/content/header.php');
 ?>
 <form action="./admin/index.php" methon="get">
-	<div id="post">
+    <div id="sidebar">
+        <div class="module-one">
+            <div class="module-title"><h1><a href="./admin/lends.php">最近申请</a></h1></div>
+            <div class="module-content">
+                <ul class="module-list">
+                    <li class="module-item">
+                        <p class="t_over module-p">书名书名书名书名书名书名书名书名书名书名书名书名书名</p>
+                        <p class="module-ctrl"><a class="control_link" href="#agree_1">审批</a></p>
+                    </li>
+                    <li class="module-item">
+                        <p class="t_over module-p">书名书名书名书名书名书名书名书名书名书名书名书名书名</p>
+                        <p class="module-ctrl"><a class="control_link" href="#agree_1">审批</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	<div class="post" id="admin_index">
 		<div class="postbook">
 			<ul>
                 <li class="form_item">

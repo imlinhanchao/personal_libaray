@@ -6,7 +6,7 @@ $_common['page'] = "admin";
 $_common['localPath'] = '..';
 $_common['message'] = '';
 
-require($_common['localPath'] . '/data/class_book_base.php');
+require_once($_common['localPath'] . '/data/class_book_base.php');
 
 if(isset($_POST["base_name"]) && $_POST["base_name"] != "")
 {
@@ -38,8 +38,8 @@ else if(isset($_POST["base_oldpwd"]) && $_POST["base_oldpwd"] != "")
 $_common['title'] = "系统设置 &laquo; ".isa_book_base::Get("WebName");
 $_common['head'] = '<script type="text/javascript" src="./js/admin.js" ></script>';
 
-require($_common['localPath'] . '/content/header.php');
-require($_common['localPath'] . '/data/class_book_post.php');
+require_once($_common['localPath'] . '/content/header.php');
+require_once($_common['localPath'] . '/data/class_book_post.php');
 
 $search = "";
 if(isset($_GET['s']))

@@ -82,6 +82,15 @@ class isa_book_lend
         return $result;
     }
 
+    function GetApplyRecords()
+    {
+        $db = new cSql();
+        $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $sql = $this->getData("`lend_valid` = -1 ");
+        $result = $db->query($sql);
+        return $result;
+    }
+
     function translateLend($status)
     {
         switch($status)

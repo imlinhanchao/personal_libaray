@@ -5,7 +5,7 @@ require_once("./verify.php");
 $_common['page'] = "admin";
 $_common['localPath'] = '..';
 
-require($_common['localPath'] . '/data/class_book_base.php');
+require_once($_common['localPath'] . '/data/class_book_base.php');
 
 $_common['title'] = "借阅管理 &laquo; ".isa_book_base::Get("WebName");
 $_common['head'] =
@@ -14,8 +14,8 @@ $_common['head'] =
 <link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.css" />
 <style type="text/css">.fancybox-inner{overflow: auto!important;}</style>';
 
-require($_common['localPath'] . '/content/header.php');
-require($_common['localPath'] . '/data/class_book_lend.php');
+require_once($_common['localPath'] . '/content/header.php');
+require_once($_common['localPath'] . '/data/class_book_lend.php');
 
 $search = "";
 if(isset($_GET['s']))

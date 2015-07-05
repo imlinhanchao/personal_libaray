@@ -58,7 +58,7 @@ require($_common['localPath'] . '/content/headlite.php');
 ?>
  <body class="dialog">
  <form action="./admin/post.php" method="post">
-	<div id="post">
+	<div class="post">
 		<div class="post_content">
 			<div class="thumb"><img src="<?=$dbInfo['images']['large']; ?>" alt="<?=$dbInfo['subtitle']; ?>" class="pic"/></div>
 			<div class="info">

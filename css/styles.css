@@ -53,8 +53,9 @@ p.submit label{font-size:0.8em;}
 /** Nav **/
 #nav{float:right;margin-top: 30px;}
 #nav .nav_list{margin:0;padding:0;}
-#nav .nav_item{width:40px;height:40px;overflow:hidden;float:left;margin:5px;}
-.nav_item a{padding-left:40px;display:block;line-height:40px;}
+#nav .nav_item{width:40px;height:40px;float:left;margin:5px;position: relative;}
+.nav_item a{display:block;width: 40px;height: 40px;overflow: hidden;}
+.nav_tip{background: #dc3023;color: #FFF;position: absolute;top: -5px;right: -5px;border-radius: 25px;font-size: 10px;width: 22px;display: block;height: 22px;line-height: 22px;text-align: center;}
 
 /** Form **/
 label.text{display:block;float:left;height:40px;background-color: #232425;color:#fff;line-height:40px;text-align:center;padding: 0 15px;margin: 5px 0;}
@@ -68,10 +69,11 @@ span.text_tail{float:left;height:40px;line-height:40px;background-color:#DEDFE1;
 .btn:active{padding: 0 14px;height:33px;margin: 6px 1px;}
 
 /** Post **/
-#post{margin:10px;}
-#post ul{margin:10px 0;padding:0;}
-#post li.form_item{clear:left;height:40px;margin: 10px;width: 410px;display: inline-block;}
+.post{margin:10px;}
+.post ul{margin:10px 0;padding:0;}
+.post li.form_item{clear:left;height:40px;margin: 10px;width: 410px;display: inline-block;}
 span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:center;background-color:#DEDFE1;margin: 5px 0;}
+.postbook{text-align: right;}
 .postbook label.text{width:70px;}
 .postbook input.text{width: 260px;}
 
@@ -126,3 +128,7 @@ span.checkbox{float:left;width:40px;height:40px;line-height:40px;text-align:cent
 /** Base **/
 #base_ctrl{margin:10px;}
 p.admin_tip{height:auto;display: inline-block;background-color: #232425;padding: 15px 15px;margin: 0;color: #EEE;font-weight: bold;font-size: 250%;}
+
+/** index **/
+#sidebar{width:20%;display: inline-block;}
+#admin_index{display: inline-block;width: 79%;margin: auto;vertical-align: top;}
